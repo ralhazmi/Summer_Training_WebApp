@@ -1,0 +1,24 @@
+services:
+
+  stms-fyp:
+    container_name: stms-fyp
+    build: .
+    volumes:
+      - ./stms-app:/var/www/html
+    ports:
+      - 9000:80
+  
+  mysql_db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: stms-fyp
+    ports:
+    - 3305:3305
+  
+  phpmyadmin:
+    image: phpmyadmin:latest
+    ports:
+      - 9001:80
+    environment:
+      - PMA_ARBITRARY=1
