@@ -10,7 +10,7 @@ The objective of this project is to develop a customized Summer Training Managem
 ## Installation
 - How to install Docker in windows? \
 Here video may help you to install Docker [Click Here](https://youtu.be/5nX8U8Fz5S0?si=SOsXhYcykGWq-tp-).
-- on terminal of VS ode editor write the following
+- on terminal of VS code editor write the following
 ```bash
 docker-compose up --build
 docker exec stms-fyp bash -c "composer update"
