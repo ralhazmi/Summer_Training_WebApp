@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\stmsUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,4 @@ Route::get('/page', function () {
     return view('page');
 });
 
-Route::get('/personal', function () {
-    return view('personal');
-});
+Route::get('/personal', [stmsUserController::class,'profile'])->name('personal.profile');

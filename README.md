@@ -41,4 +41,10 @@ DB_USERNAME=root
 DB_PASSWORD=root
 
 ```
-## contribution
+## DB migrations 
+inside the database folder the database tables was created ,
+to create the database run the following commands in the terminal :
+```bash
+docker exec stms-fyp bash -c "php artisan migrate"
+```
+after that the all tables should be created successfully , so you can see the phpmyadmin the all tables should be appear.
