@@ -27,3 +27,62 @@ Route::group(['middleware'=>'auth'], function (){
 });
 
 
+
+Route::get('/Dashboard/{id?}', function () {
+
+    return view ('Dash ') ;
+    });
+    
+
+
+    
+
+Route::get('/Announcement/{id?}', function () {
+
+    return view ('A ') ;
+    });
+    
+    
+    Route::get('/Reports/{id?}', function () {
+
+        return view ('R ') ;
+        });
+        
+
+ 
+Route::get('/Requests/{id?}', function () {
+
+return view ('RQ ') ;
+});
+
+    
+
+Route::get('/Manage student/{id?}', function () {
+
+    return view ('MS ') ;
+    });
+    
+
+    
+Route::get('/Contact with student/{id?}', function () {
+
+    return view ('CS') ;
+    });
+
+
+
+Route::get('/Contact with supervisor/{id?}', function () {
+
+    return view ('CSuper') ;
+    });
+    
+   
+
+    
+
+Route::get('/Log out/{id?}', function () {
+
+    return view ('Lout') ;
+    });
+    
+    
