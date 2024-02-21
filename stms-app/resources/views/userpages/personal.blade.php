@@ -6,11 +6,10 @@
     <title>Profile</title>
 </head>
 <body>
-    <h1>Users </h1>
-    @foreach($users as $user)
+    <h1>User</h1>
     <p>{{$user->username}}</p></br>
     <p>{{$user->email}}</p></br>
     <p>{{$user->major}}</p></br>
-    @endforeach
+    <button ><a href="{{route('logout')}}">log out</a></button>
 </body>
 </html>

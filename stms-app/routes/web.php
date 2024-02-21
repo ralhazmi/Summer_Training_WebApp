@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\stmsUserController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,12 +15,15 @@ use App\Http\Controllers\stmsUserController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [AuthController::class,'login'])->name('auth.login');
+Route::post('/', [AuthController::class,'loginPost'])->name('auth.login.post');
+
+Route::get('/register', [AuthController::class,'registeation'])->name('auth.register');
+Route::post('/register', [AuthController::class,'registrationPost'])->name('auth.register.post');
+
+Route::get('/logout', [AuthController::class,'logout'])->name('logout');
+Route::group(['middleware'=>'auth'], function (){
+    Route::get('/personal', [ProfileController::class,'profile'])->name('personal.profile');
 });
 
-Route::get('/page', function () {
-    return view('page');
-});
 
-Route::get('/personal', [stmsUserController::class,'profile'])->name('personal.profile');
