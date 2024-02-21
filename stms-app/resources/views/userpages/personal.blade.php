@@ -39,6 +39,7 @@
         <div class="w-full max-w-xl p-4 border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 profile-info">
             <h1>User Profile</h1>
             <p>Username: {{$user->username}}</p>
+            <p>User ID: {{$user->id}}</p>
             <p>Email: {{$user->email}}</p>
             <p>Major: {{$user->major}}</p>
         </div>
