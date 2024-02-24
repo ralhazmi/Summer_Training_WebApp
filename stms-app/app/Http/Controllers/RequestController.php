@@ -29,13 +29,13 @@ class RequestController extends Controller
         // Optionally, you can redirect the user after storing the request
         return redirect()->back()->with('success', 'Request submitted successfully!');
     }
-    
+
     public function index()
     {
         // Fetch all previous requests
         $previousRequests = Requests::all();
 
         // Pass previous requests to the view
-        return view('rq', ['previousRequests' => $previousRequests]);
+        return view('RQ', ['previousRequests' => $previousRequests]);
     }
 }

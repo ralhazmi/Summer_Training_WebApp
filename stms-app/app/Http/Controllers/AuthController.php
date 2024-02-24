@@ -12,13 +12,13 @@ class AuthController extends Controller
 {
     function login(){
         if(Auth::check()){
-            return redirect('/personal');
+            return redirect(route('dashboard'));
         }
         return view('authusers.login');
     }
     function registeation(){
         if(Auth::check()){
-            return redirect('/personal');
+            return redirect(route('dashboard'));
         }
         return view('authusers.registration');
     }
@@ -31,7 +31,7 @@ class AuthController extends Controller
 
       $credentials = $request->only('email','password');
       if(Auth::attempt($credentials)){
-        return redirect()->intended(route('personal.profile'));
+        return redirect()->intended(route('dashboard'));
       }
     return redirect()->back()->with("error","invalid credentials");
   }
