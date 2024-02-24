@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RequestController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +28,14 @@ Route::get('/logout', [AuthController::class,'logout'])->name('logout');
 Route::group(['middleware'=>'auth'], function (){
     Route::get('/personal', [ProfileController::class,'profile'])->name('personal.profile');
 });
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/Requests/{id?}', [RequestController::class, 'index'])->name('requests');
 
+
+
+
+// Add a new route to handle POST requests for /Requests
+Route::post('/Requests', [RequestController::class, 'store'])->name('requests.store');
 
 
 Route::get('/Dashboard/{id?}', function () {
@@ -50,10 +60,10 @@ Route::get('/Announcement/{id?}', function () {
         
 
  
-Route::get('/Requests/{id?}', function () {
+//Route::get('/Requests/{id?}', function () {
 
-return view ('RQ ') ;
-});
+//return view ('RQ ') ;
+//});
 
     
 
