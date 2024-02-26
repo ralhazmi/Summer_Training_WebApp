@@ -1,10 +1,9 @@
-<!-- view.php -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Form</title>
+    <title>request Form</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
     <style>
         /* CSS for the hidden form */
@@ -36,11 +35,11 @@
             <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                 
                 <!-- Modal body -->
-                <form method="post" action="{{ route('requests.store') }}" style="width:80%; margin:0 auto;">
-                    @csrf <!-- CSRF token -->
+                <form id="newRequestForm" method="post" action="#" style="width:80%; margin:0 auto;">
+                    @csrf <!-- CSRF token (not needed since it's not a Laravel application) -->
                     <div>
                       <label for="email" class="mb-5 text-sm text-gray-900 text-white">To</label>
-                      <input type="email" id="email" name="email" value="{{ old('email') }}" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter your email" required />
+                      <input type="email" id="email" name="email" value="" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter your email" required />
                       @error('email')
                           <span class="text-red-800">{{ $message }}</span>
                       @enderror
@@ -48,22 +47,22 @@
                     <div class="flex mb-5">
                         <div class="w-1/2 mr-2">
                             <label for="request_title" class="text-sm text-gray-900 text-white">Title</label>
-                            <input type="text" id="request_title" name="requset_title" value="{{ old('request_title') }}" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write title here..." required />
+                            <input type="text" id="request_title" name="requset_title" value="" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write title here..." required />
                             @error('request_title')
                                 <span class="text-red-800">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="w-1/2 ml-2">
                             <label for="date" class="text-sm text-gray-900 text-white">Date</label>
-                            <input type="date" id="date" name="date" value="{{ old('date') }}" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+                            <input type="date" id="date" name="date" value="" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
                             @error('date')
                                 <span class="text-red-800">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
                     <div>
-                        <label for="content" class="mb-5 text-sm text-gray-900 text-white">Content</label>
-                        <textarea id="content" rows="4" class="border border-gray-300 p-2.5 w-full text-sm text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write content here..." name="content">{{ old('content') }}</textarea>
+                        <label for="contentInput" class="mb-5 text-sm text-gray-900 text-white">Content</label>
+                        <textarea id="contentInput" rows="4" class="border border-gray-300 p-2.5 w-full text-sm text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write content here..." name="content"></textarea>
                         @error('content')
                             <span class="text-red-800">{{ $message }}</span>
                         @enderror
@@ -78,24 +77,24 @@
     </div>
 
     <div class="mt-8">
-      <h2 class="text-lg font-semibold mb-4">Previous Requests</h2>
+      
       <div class="flex flex-wrap grid-cols-3 gap-4">
         @if (count($previousRequests) > 0)
-          @foreach($previousRequests as $request)
-            <div class="border rounded-lg p-4 bg-gray-200 text-blue-700">
-              <p><strong>Title:</strong> {{ $request->request_title }}</p>
-            </div>
-          @endforeach
-        @else
-          <p class="text-gray-500">No previous requests found.</p>
-        @endif
+        <h2 class="text-lg font-semibold mb-4">Previous Requests</h2>
+         @foreach($previousRequests as $request)
+          <p>title</p>{{ $request->request_title }}
+         @endforeach
+          @else 
+             <p>no request</p>
+            @endif
+        </div>
       </div>
     </div>
     
     
     
 
-    <!-- JavaScript to show the form -->
+     
     <script>
         document.getElementById("addRequestBtn").addEventListener("click", function() {
             document.getElementById("bottom-right-modal").classList.remove("hidden");
@@ -104,8 +103,8 @@
             item.addEventListener("click", function() {
                 document.getElementById("bottom-right-modal").classList.add("hidden");
             });
-        });
-    </script>
+        });</script>
+    
  
 </body>
 </html>

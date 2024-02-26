@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Requests extends Model
 {
     use HasFactory;
-
-    protected $fillable = ['email', 'title', 'date', 'content'];
+    public $table ="requests";
+    public $fillable = ['email', 'request_title', 'date', 'content'];
 }

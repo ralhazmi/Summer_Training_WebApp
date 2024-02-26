@@ -29,7 +29,7 @@ Route::group(['middleware'=>'auth'], function (){
     Route::get('/personal', [ProfileController::class,'profile'])->name('personal.profile');
     Route::get('/Dashboard', [ProfileController::class,'sideBar'])->name('dashboard');
     // Add a new route to handle POST requests for /Requests
-    Route::get('/Requests/{id?}', [RequestController::class, 'index'])->name('requests');
+    Route::get('/Requests', [RequestController::class, 'index'])->name('requests');
     Route::post('/Requests', [RequestController::class, 'store'])->name('requests.store');
 });
 
