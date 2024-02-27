@@ -27,11 +27,13 @@ Route::post('/register', [AuthController::class,'registrationPost'])->name('auth
 
 Route::get('/logout', [AuthController::class,'logout'])->name('logout');
 Route::group(['middleware'=>'auth'], function (){
-    Route::get('/personal', [ProfileController::class,'profile'])->name('personal.profile');
-    Route::get('/Dashboard', [ProfileController::class,'sideBar'])->name('dashboard');
-    // Add a new route to handle POST requests for /Requests
-    Route::get('/Requests/{id?}', [RequestController::class, 'index'])->name('requests');
-    Route::post('/Requests', [RequestController::class, 'store'])->name('requests.store');
+   
+Route::get('/personal', [ProfileController::class,'profile'])->name('personal.profile');
+Route::get('/Dashboard', [ProfileController::class,'sideBar'])->name('dashboard');
+
+Route::get('/req.RQ', [RequestController::class, 'index'])->name("indexrequest");
+Route::post('/store-request', [RequestController::class, 'store'])->name("storerequest");
+Route::get('/download-request/{attachment}',[RequestController::class,'download'])->name("download");
 
 
 Route::get('/annou.Announcements',[AnnouncementsController::class,'index'])->name("indexannouncement");

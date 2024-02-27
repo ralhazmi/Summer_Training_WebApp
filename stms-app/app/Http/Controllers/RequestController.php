@@ -1,13 +1,13 @@
 <?php
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Stroage;
 use Illuminate\Http\Request;
-
 use App\Models\Requests; // Assuming your model is named Requests and located in the app/Models directory
+use App\Http\Requests\CreateRequest;
 
 class RequestController extends Controller
 {
-    public function store(Request $request)
+    public function store(CreateRequest $request)
     {
         // Validate the incoming request data
         $validatedData = $request->validate([
@@ -17,34 +17,46 @@ class RequestController extends Controller
             'content' => 'required|string',
             // Add any additional validation rules for your fields here
         ]);
-        Requests::create($validatedData);
-        // Create a new request instance with the validated data
-        //$newRequest = Requests::create([
-           // 'email' => $request->email,
-           // 'request_title' => $request->request_title,
-           // 'date' => $request->date,
-           // 'content' => $request->content,
-            // Add any additional fields you want to save here
-        //]);
+        //Requests::create($validatedData);
+        
+        $datatoinsert= new requests;
+        $datatoinsert['email']=$request->email;
+        $datatoinsert['request_title']=$request->request_title;
+        $datatoinsert['date']=date('Y-m-d H:i:s');
+        $datatoinsert['content']=$request->content;
+        $datatoinsert['attachment']=$request->attachment;
+        $attachment = $request-> attachment;
 
-        // Optionally, you can redirect the user after storing the request
-        return redirect()->back()->with('success', 'Request submitted successfully!');
+        if( $attachment){
+            $attachmentname=time().'.'. $attachment->getClientOriginalExtension();
+            $request->attachment->move('attachmentFile',$attachmentname);
+            $datatoinsert->attachment=$attachmentname;
+        }
+        $datatoinsert->save();
+        return redirect()->route('indexrequest')->with(['success'=>'Request added successfully']);
+    }
+
+    public function download(Request $request,$attachment)
+    {
+
+        return response()->download(public_path('attachmentFile/' .$attachment));
     }
 
     
-    
+    public function create()
+    {
+    return view('req.RQ');
+    }
     
     public function index()
-{
+     {
+        $previousRequests=Requests::paginate(10);
+        return view('req.RQ',compact('previousRequests'),['user'=> auth()->user()]);
+    
     // Fetch all previous requests
-    $previousRequests = Requests::all();
-
-    // Dump and die to check the fetched data
-    //dd($previousRequests);
-
-    // Pass previous requests to the view
-return view('RQ', ['previousRequests' => $previousRequests]);
-}
+    //$previousRequests = Requests::all();
+    // return view('req.RQ', ['previousRequests' => $previousRequests]);
+    }
 
     /*public function index()
       {

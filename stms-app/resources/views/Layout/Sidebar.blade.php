@@ -94,7 +94,7 @@
             </a>
          </li>
          <li>
-            <a href="{{route('requests')}}" class="flex items-center p-2 text-blue-900 rounded-lg  hover:bg-gray-100  group">
+            <a href="{{route('indexrequest')}}" class="flex items-center p-2 text-blue-900 rounded-lg  hover:bg-gray-100  group">
                <i class=" fa fa-solid fa-file-pen flex-shrink-0 w-5 h-5 text-blue-900 transition duration-75  group-hover:text-blue-900 ">
                </i>
                @if ($user->role == 2)

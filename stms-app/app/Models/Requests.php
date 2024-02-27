@@ -9,5 +9,11 @@ class Requests extends Model
 {
     use HasFactory;
     public $table ="requests";
-    public $fillable = ['email', 'request_title', 'date', 'content'];
+    protected $fillable = [
+        'email',
+        'request_title',
+        'date',
+        'content',
+        'attachment',
+    ];
 }
