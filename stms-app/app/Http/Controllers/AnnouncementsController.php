@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Stroage;
 use Illuminate\Http\Request;
 use App\Models\Announcements;
 use App\Http\Requests\CreateAnnouRequest;
@@ -16,7 +16,7 @@ class AnnouncementsController extends Controller
      */
     public function index()
     {
-        $data=Announcements::all();
+        $data=Announcements::paginate(10);
         return view('annou.Announcements',compact('data'),['user'=> auth()->user()]);
     }
 
@@ -61,9 +61,10 @@ class AnnouncementsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show()
+    public function download(Request $request,$attachment)
     {
-        //
+
+        return response()->download(public_path('attachmentFile/' .$attachment));
     }
 
     /**

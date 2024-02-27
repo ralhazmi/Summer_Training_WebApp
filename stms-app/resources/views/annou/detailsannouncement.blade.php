@@ -1,27 +1,32 @@
 @extends('Layout.Sidebar')
 @section('title','Durba | Announcements')
 @section('body')
-<div class="flex justify-center ">
-<div class="relative overflow-x-auto shadow-md sm:rounded-lg ">
-    <table class="w-full text-sm text-left rtl:text-right text-gray-500  w-full md:w-auto">
-        <tbody>
-            <tr class="bg-white border-b ">
-                <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap ">
-                <svg class="w-6 h-6 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 19">
-    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 12 5.419 3.871A1 1 0 0 0 16 15.057V2.943a1 1 0 0 0-1.581-.814L9 6m0 6V6m0 6H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h7m-5 6h3v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-5Zm15-3a3 3 0 0 1-3 3V6a3 3 0 0 1 3 3Z"/>
+
+
+<div class="flex justify-end rounded-md ">
+<a href="{{route('indexannouncement')}}" class="inline-flex items-center text-lg text-blue-900 hover:underline">
+<svg class="w-96 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
 </svg>
-                    <div class="ps-3">
-                        <div class="text-base font-semibold">{{$announcement->title}}</div>
-                        <div class="font-normal text-gray-500">{{$announcement->content}}</div>
-                        <div class="font-normal text-gray-500">{{$announcement->attachment}}</div>
-                    </div>  
-                  </th>
-                  <td class="px-6 py-4">
-                  {{$announcement->created_at}}
-                </td>
-            </tr>
-        </tbody>
-    </table>
+</a>
+</div>
+<div class="flex justify-center ">
+<div class="max-w-sm pb-60 bg-white border border-gray-200 rounded-lg shadow  ">
+    <div>
+<h6 class="flex justify-center w-96 mb-5 text-2xl font-serif  text-gray-900">{{$announcement->title}}</h6>
+</div>
+<div class=" flex justify-center font-normal ">
+    <p class="font-normal text-gray-500 ">{{$announcement->content}}</p>
+</div>
+    @if($announcement->attachment)
+    <div class="flex justify-left w-96">
+    <a href="{{route('download',$announcement->attachment)}}" class=" font-medium text-blue-800 hover:underline ">Download File</a>
+    <svg class="w-5 h-5 text-blue-800 hover:underline" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 18">
+    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M8 1v11m0 0 4-4m-4 4L4 8m11 4v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3"/>
+</svg>
+    </a>
+</div>
+    @endif
 </div>
 </div>
 @endsection

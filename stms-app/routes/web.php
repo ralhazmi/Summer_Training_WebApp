@@ -36,7 +36,9 @@ Route::group(['middleware'=>'auth'], function (){
 
 Route::get('/annou.Announcements',[AnnouncementsController::class,'index'])->name("indexannouncement");
 Route::post('/store',[AnnouncementsController::class,'store'])->name("storeannouncement");
-Route::get('/detailsannouncement/{id}',[AnnouncementsController::class,'detailsannouncement'])->name("detailsannouncement");
+Route::get('/annou.detailsannouncement/{id}',[AnnouncementsController::class,'detailsannouncement'])->name("detailsannouncement");
+Route::get('/download/{attachment}',[AnnouncementsController::class,'download'])->name("download");
+
 });
 
 
