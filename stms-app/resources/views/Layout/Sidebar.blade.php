@@ -87,7 +87,7 @@
             </a>
          </li>
          <li>
-            <a href="#" class="flex items-center p-2 text-blue-900 rounded-lg  hover:bg-gray-100  group">
+            <a href="{{route('indexannouncement')}}" class="flex items-center p-2 text-blue-900 rounded-lg  hover:bg-gray-100  group">
                <i class="fa fa-solid fa-bullhorn flex-shrink-0 w-5 h-5 text-blue-900 transition duration-75  group-hover:text-blue-900 " >
                 </i>
                <span class="flex-1 ms-3 whitespace-nowrap"> Announcements </span>

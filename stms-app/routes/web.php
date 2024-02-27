@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RequestController;
+use App\Http\Controllers\AnnouncementsController;
 
 
 /*
@@ -29,8 +30,13 @@ Route::group(['middleware'=>'auth'], function (){
     Route::get('/personal', [ProfileController::class,'profile'])->name('personal.profile');
     Route::get('/Dashboard', [ProfileController::class,'sideBar'])->name('dashboard');
     // Add a new route to handle POST requests for /Requests
-    Route::get('/Requests', [RequestController::class, 'index'])->name('requests');
+    Route::get('/Requests/{id?}', [RequestController::class, 'index'])->name('requests');
     Route::post('/Requests', [RequestController::class, 'store'])->name('requests.store');
+
+
+Route::get('/annou.Announcements',[AnnouncementsController::class,'index'])->name("indexannouncement");
+Route::post('/store',[AnnouncementsController::class,'store'])->name("storeannouncement");
+Route::get('/detailsannouncement/{id}',[AnnouncementsController::class,'detailsannouncement'])->name("detailsannouncement");
 });
 
 
