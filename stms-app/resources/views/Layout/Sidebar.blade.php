@@ -10,7 +10,6 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Flowbite -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="{{ asset('css/app.css') }}">
   <style>
   .bg-teal-600 {
     --tw-bg-opacity: 1;
@@ -106,7 +105,7 @@
          </li>
          @if ($user->role == 2)
          <li>
-            <a href="#" class="flex items-center p-2 text-blue-900 rounded-lg  hover:bg-gray-100  group">
+         <a href="{{route('show.students')}}" class="flex items-center p-2 text-blue-900 rounded-lg  hover:bg-gray-100  group">
                <i class="fa fa-solid fa-people-roof flex-shrink-0 w-5 h-5 text-blue-900 transition duration-75  group-hover:text-blue-900 " >
                </i>
                <span class="flex-1 ms-3 whitespace-nowrap">Manage students</span>

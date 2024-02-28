@@ -3,7 +3,7 @@
 @section('body')
 
   <!--pop up code -->
-  <div class="flex justify-end rounded-md ">
+<div class="flex justify-end rounded-md ">
 <div class="block space-y-4 md:flex md:space-y-0 md:space-x-4 rtl:space-x-reverse">
     <!-- Modal toggle -->
     @if ($user->role == 2)
@@ -78,7 +78,7 @@
                         <div class="text-base font-semibold">{{$announcement->title}}</div>
                         <div class="font-normal text-gray-500"><p>{!! Str::limit($announcement->content,40)!!}</p></div>
                         <div class="font-normal text-gray-500">{{$announcement->attachment}}</div>
-                    </div>  
+                    </div>
                   </th>
                   <td class="px-6 py-4">
                   {{$announcement->created_at}}
@@ -89,7 +89,7 @@
 
             </tr>
             @endforeach
-            @else 
+            @else
 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">Announcements</h5>
 <p class="font-normal text-gray-700 text-gray-400"> There are currently no announcements loaded!.</p>
 </a>

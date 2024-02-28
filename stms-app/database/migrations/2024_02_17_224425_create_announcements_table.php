@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->string('title')->nullable(false);
             $table->text('content')->nullable(false);
-            $table->binary('attachment');
+            $table->binary('attachment')->nullable();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
 

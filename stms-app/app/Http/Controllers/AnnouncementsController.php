@@ -16,7 +16,7 @@ class AnnouncementsController extends Controller
      */
     public function index()
     {
-        $data=Announcements::paginate(10);
+        $data=Announcements::paginate(4);
         return view('annou.Announcements',compact('data'),['user'=> auth()->user()]);
     }
 

@@ -1,5 +1,6 @@
-# Summer Training Management System
+# Summer Training Management System ( Durba )
 
+![Logo](stms-app/public/images/Durba-removebg-preview.png "Logo")
 The objective of this project is to develop a customized Summer Training Management System(STMS) using web development technologies to transform the traditional methods of managing summer training into a professional and reliable approach.
 
 ## Tools we used 
