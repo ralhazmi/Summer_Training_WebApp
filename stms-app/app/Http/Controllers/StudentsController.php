@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class StudentsController extends Controller
 {
     function show(){
-        $data = User::where('role', 1)->get();
+        $data = User::where('role', 1)->paginate(4);
         return view('manageStudents.manageStudents',compact('data'),['user'=> auth()->user()]);
 
     }

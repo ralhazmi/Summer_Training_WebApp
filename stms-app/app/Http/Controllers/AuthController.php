@@ -12,14 +12,14 @@ class AuthController extends Controller
 {
     function login(){
         if(Auth::check()){
-            return redirect(route('dashboard'));
+            return redirect(route('dashboard'))->with("Success","You already logged in ");
         }
         return view('authusers.login');
     }
 
     function registeation(){
         if(Auth::check()){
-            return redirect(route('dashboard'))->with("Success","You loged in Succesffully");
+            return redirect(route('dashboard'))->with("Success","You already logged in ");
         }
         return view('authusers.registration');
     }
@@ -38,7 +38,7 @@ class AuthController extends Controller
             // User is deactivated, log them out
             Auth::logout();
             return redirect()->back()->with("error",'Your account is deactivated. Contact Supervisor for assistance.');}
-        return redirect()->intended(route('dashboard'));
+        return redirect()->intended(route('dashboard'))->with("Success","You loged in Succesffully");
       }
     return redirect()->back()->with("error","invalid credentials");
   }

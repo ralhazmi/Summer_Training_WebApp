@@ -7,6 +7,16 @@
     --tw-bg-opacity: 1;
     background-color: #51c3cd30 !important;
 }
+
+.pagination a,
+.pagination span {
+
+    color: #00519b;
+    border-color: #00519b;
+    background-color: #fff;
+
+}
+
 </style>
 @if($errors->any())
     <div class="m-2">
@@ -154,25 +164,25 @@
     <table class="w-full text-sm text-center rtl:text-right text-blue-900 ">
         <thead class="text-xs text-blue-900 uppercase ">
             <tr>
-                <th scope="col" class="px-6 py-3 bg-sky-500 ">
+                <th scope="col" class="px-4 py-3 bg-sky-500 ">
                     ID
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" class="px-4 py-3">
                     Name
                 </th>
-                <th scope="col" class="px-6 py-3 bg-sky-500 ">
+                <th scope="col" class="px-4 py-3 bg-sky-500 ">
                     Email
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" class="px-4 py-3">
                     Hours earned
                 </th>
-                <th scope="col" class="px-6 py-3 bg-sky-500">
+                <th scope="col" class="px-4 py-3 bg-sky-500">
                     Training Entity
                 </th>
-                <th scope="col" class="px-6 py-3 ">
+                <th scope="col" class="px-4 py-3 ">
                 Activation
                 </th>
-                <th scope="col" class="px-6 py-3 bg-sky-500">
+                <th scope="col" class="px-4 py-3 bg-sky-500">
                     Actions
                 </th>
 
@@ -181,35 +191,35 @@
         <tbody>
             @foreach($data as $student)
             <tr class="border-b border-gray-200 ">
-                <th scope="row" class="px-6 py-4 font-medium text-blue-900 whitespace-nowrap bg-sky-500 ">
+                <th scope="row" class="px-4 py-4 font-medium text-blue-900 whitespace-nowrap bg-sky-500 ">
                     {{$student->id}}
                 </th>
-                <td class="px-6 py-4 ">
+                <td class="px-4 py-4 ">
                 {{$student->username}}
                 </td>
-                <td class="px-6 py-4 bg-sky-500 ">
+                <td class="px-4 py-4 bg-sky-500 ">
                 {{$student->email}}
                 </td>
-                <td class="px-6 py-4  ">
+                <td class="px-4 py-4  ">
                 {{$student->hours}}
                 </td>
-                <td class="px-6 py-4 bg-sky-500 ">
+                <td class="px-4 py-4 bg-sky-500 ">
                 {{$student->company}}
                 </td>
                 @if($student->activation == 1)
-                <td class="px-6  py-4">
+                <td class="px-4  py-4">
                 <div class="flex items-center">
                         <div class="h-2.5 w-2.5 rounded-full bg-green-500 me-2"></div> Active
                     </div>
                 </td>
                 @else
-                <td class="px-6  py-4">
+                <td class="px-4  py-4">
                 <div class="flex items-center">
                         <div class="h-2.5 w-2.5 rounded-full bg-red-500 me-2"></div> Deactive
                     </div>
                 </td>
                 @endif
-                <td class="px-6 bg-sky-500  py-4">
+                <td class="px-4 bg-sky-500  py-4">
                 <div class="inline-flex rounded-md shadow-sm" role="group">
 
                     <div class="flex justify-end rounded-md ">
@@ -295,6 +305,9 @@
             @endforeach
         </tbody>
     </table>
+    <span class="pagination" >
+    {{$data->links()}}
+</span>
 </div>
 @endsection
 

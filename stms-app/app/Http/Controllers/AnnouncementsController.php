@@ -46,6 +46,7 @@ class AnnouncementsController extends Controller
             $request->attachment->move('attachmentFile',$attachmentname);
             $datatoinsert->attachment=$attachmentname;
         }
+        $datatoinsert->user()->associate(auth()->user());
 
         $datatoinsert->save();
        return redirect()->route('indexannouncement')->with(['success'=>'added successfully']);
