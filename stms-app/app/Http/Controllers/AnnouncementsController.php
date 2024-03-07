@@ -16,7 +16,7 @@ class AnnouncementsController extends Controller
      */
     public function index()
     {
-        $data=Announcements::paginate(10);
+        $data=Announcements::paginate(4);
         return view('annou.Announcements',compact('data'),['user'=> auth()->user()]);
     }
 
@@ -46,6 +46,7 @@ class AnnouncementsController extends Controller
             $request->attachment->move('attachmentFile',$attachmentname);
             $datatoinsert->attachment=$attachmentname;
         }
+        $datatoinsert->user()->associate(auth()->user());
 
         $datatoinsert->save();
        return redirect()->route('indexannouncement')->with(['success'=>'added successfully']);

@@ -17,11 +17,11 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('major')->nullable(false);
-            $table->integer('hours')->nullable(false);
+            $table->integer('hours')->nullable();
             $table->string('password')->nullable(false);
             $table->integer('role')->nullable(false)->default(1);
             $table->integer('activation')->nullable(false)->default(1);
-            $table->unsignedBigInteger('company_id')->nullable()->unsigned();
+            $table->string('company')->nullable(false)->default("Unkown");
             $table->rememberToken('token');
             $table->timestamps();
         });

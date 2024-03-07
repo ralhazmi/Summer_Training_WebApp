@@ -12,13 +12,14 @@ class AuthController extends Controller
 {
     function login(){
         if(Auth::check()){
-            return redirect(route('dashboard'));
+            return redirect(route('dashboard'))->with("Success","You already logged in ");
         }
         return view('authusers.login');
     }
+
     function registeation(){
         if(Auth::check()){
-            return redirect(route('dashboard'));
+            return redirect(route('dashboard'))->with("Success","You already logged in ");
         }
         return view('authusers.registration');
     }
@@ -31,11 +32,16 @@ class AuthController extends Controller
 
       $credentials = $request->only('email','password');
       if(Auth::attempt($credentials)){
-        return redirect()->intended(route('dashboard'));
+        $user = Auth::user();
+
+        if ($user->activation == 2) {
+            // User is deactivated, log them out
+            Auth::logout();
+            return redirect()->back()->with("error",'Your account is deactivated. Contact Supervisor for assistance.');}
+        return redirect()->intended(route('dashboard'))->with("Success","You loged in Succesffully");
       }
     return redirect()->back()->with("error","invalid credentials");
   }
-
 
   function registrationPost(Request $request){
     $request->validate([
@@ -66,7 +72,7 @@ class AuthController extends Controller
       if (!$user){
         return redirect('/register')->with("error","Register faild,try again");
       }
-      return redirect('/')->with("Success","Register Success");
+      return redirect('/')->with("Success","Register Succesffully");
 
 
 }

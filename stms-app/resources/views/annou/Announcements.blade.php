@@ -1,9 +1,19 @@
 @extends('Layout.Sidebar')
 @section('title','Durba | Announcements')
 @section('body')
+<style>
+/* Add these styles to your existing CSS file or create a new one */
+.pagination a,
+.pagination span {
 
+    color: #00519b;
+    border-color: #00519b;
+    background-color: #fff;
+
+}
+</style>
   <!--pop up code -->
-  <div class="flex justify-end rounded-md ">
+<div class="flex justify-end rounded-md ">
 <div class="block space-y-4 md:flex md:space-y-0 md:space-x-4 rtl:space-x-reverse">
     <!-- Modal toggle -->
     @if ($user->role == 2)
@@ -20,7 +30,7 @@
             <!-- Modal header -->
             <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
                 <h3 class="text-xl font-medium text-gray-900">
-                Add Announcement
+                + Add Announcement
                 </h3>
                 <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center" data-modal-hide="small-modal">
                     <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
@@ -56,11 +66,10 @@
  </p>
 </div>
 </div>
-
-            </div>
-        </div>
-    </div>
 </div>
+        <!-- </div>
+    </div>
+</div> -->
 <!--end pop up code -->
 
 <div class="flex justify-center ">
@@ -78,10 +87,13 @@
                         <div class="text-base font-semibold">{{$announcement->title}}</div>
                         <div class="font-normal text-gray-500"><p>{!! Str::limit($announcement->content,40)!!}</p></div>
                         <div class="font-normal text-gray-500">{{$announcement->attachment}}</div>
-                    </div>  
+                    </div>
                   </th>
                   <td class="px-6 py-4">
                   {{$announcement->created_at}}
+                </td>
+                <td class="px-6 py-4">
+                {{ $announcement->user->username }}
                 </td>
                 <td class="px-6 py-4">
                     <a href="{{route('detailsannouncement',$announcement->id)}}" class="font-medium text-blue-800 hover:underline">View details</a>
@@ -89,16 +101,16 @@
 
             </tr>
             @endforeach
-            @else 
-<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">Announcements</h5>
-<p class="font-normal text-gray-700 text-gray-400"> There are currently no announcements loaded!.</p>
-</a>
-@endif
+            @else
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">Announcements</h5>
+            <p class="font-normal text-gray-700 text-gray-400"> There are currently no announcements loaded!.</p>
+            </a>
+            @endif
         </tbody>
     </table>
 </div>
 </div>
-<span>
+<span class="pagination" >
     {{$data->links()}}
 </span>
 </div>
