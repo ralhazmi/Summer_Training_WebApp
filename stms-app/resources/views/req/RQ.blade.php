@@ -1,12 +1,15 @@
 @extends('Layout.Sidebar')
 
-@section('title', 'Durba | Announcements')
+@section('title', 'Durba | Requests')
 
 @section('body')
 <!--pop up code -->
+
 <div class="flex justify-end rounded-md ">
     <div class="block space-y-4 md:flex md:space-y-0 md:space-x-4 rtl:space-x-reverse">
+        @if(auth()->user()->role == 1)
         <button data-modal-target="small-modal" data-modal-toggle="small-modal" class="block w-full md:w-auto text-white bg-blue-900 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" type="button">Add Request</button>
+        @endif
     </div>
 </div>
 
@@ -74,18 +77,24 @@
     <div class="flex flex-wrap grid-cols-3 gap-4">
         @if (count($previousRequests) > 0)
         @foreach($previousRequests as $request)
-        <div class="border border-gray-300 rounded-lg p-4 bg-gray-200">
-            <p class="text-blue-900 font-semibold">Title: {{ $request->request_title }}</p>
+          <div class="bg-white shadow rounded-lg p-4 mb-4">
             <p class="text-blue-900 font-semibold">Email: {{ $request->email }}</p>
             <p class="text-blue-900 font-semibold">Date: {{ $request->date }}</p>
-            <p class="text-blue-900 font-semibold">Content: {{ $request->content }}</p>
+            <p class="text-blue-900 font-semibold">Status: {{ $request->request_status }}</p>
             <!-- Add more fields as needed -->
-        </div>
-        @endforeach
-        @else
-        <p>No requests</p>
-        @endif
-    </div>
+            <td class="px-6 py-4">
+              <a href="{{route('requestdetails',$request->id)}}" class="font-medium text-blue-800 hover:underline">View details</a>
+              
+      </div>
+  @endforeach
+@else
+  <p>No requests</p>
+@endif
 </div>
+</div>
+<span>
+    {{$previousRequests->links()}}
+</span>
+
 
 @endsection

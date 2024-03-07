@@ -34,6 +34,9 @@ Route::get('/Dashboard', [ProfileController::class,'sideBar'])->name('dashboard'
 Route::get('/req.RQ', [RequestController::class, 'index'])->name("indexrequest");
 Route::post('/store-request', [RequestController::class, 'store'])->name("storerequest");
 Route::get('/download-request/{attachment}',[RequestController::class,'download'])->name("download");
+Route::get('/req.requestdetails/{id}',[RequestController::class,'requestdetails'])->name("requestdetails");
+Route::post('/requests/{id}/update-status', [RequestController::class, 'updatestatus'])->name('updatestatus');
+
 
 
 Route::get('/annou.Announcements',[AnnouncementsController::class,'index'])->name("indexannouncement");
