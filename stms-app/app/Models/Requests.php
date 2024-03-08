@@ -15,5 +15,6 @@ class Requests extends Model
         'date',
         'content',
         'attachment',
+        'request_status',
     ];
 }

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->string('email')->nullable(false);
-            $table->integer('request_status')->default(1);
+            $table->unsignedTinyInteger('request_status')->default(1); // Change to unsigned tiny integer column with default value 1
             $table->string('request_title')->nullable(false);
             $table->text('content')->nullable(false);
             $table->binary('attachment');
