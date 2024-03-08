@@ -34,14 +34,6 @@ Route::get('/logout', [AuthController::class,'logout'])->name('logout');
 
 Route::group(['middleware'=>'auth'], function (){
 
-<<<<<<< HEAD
-Route::get('/req.RQ', [RequestController::class, 'index'])->name("indexrequest");
-Route::post('/store-request', [RequestController::class, 'store'])->name("storerequest");
-Route::get('/download-request/{attachment}',[RequestController::class,'download'])->name("download");
-Route::get('/req.requestdetails/{id}',[RequestController::class,'requestdetails'])->name("requestdetails");
-Route::post('/requests/{id}/update-status', [RequestController::class, 'updatestatus'])->name('updatestatus');
-
-=======
     Route::get('/personal', [ProfileController::class,'profile'])->name('personal.profile');
     Route::get('/Dash', [ProfileController::class,'sideBar'])->name('dashboard');
 
@@ -49,7 +41,6 @@ Route::post('/requests/{id}/update-status', [RequestController::class, 'updatest
     Route::post('/manage_students/add', [StudentsController::class,'add'])->name('add.students');
     Route::put('/manage_students/{student}/update', [StudentsController::class,'updatestuedent'])->name('update.students');
     Route::any('/update-activation/{id}/{status}',  [StudentsController::class,'updateActivation'])->name('update.Activation');
->>>>>>> f4be441c6dc156e3aff1bdaf6fae8bca1bade86a
 
     Route::get('/req.RQ', [RequestController::class, 'index'])->name("indexrequest");
     Route::post('/store-request', [RequestController::class, 'store'])->name("storerequest");
