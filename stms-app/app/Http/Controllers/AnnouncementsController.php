@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Stroage;
 use Illuminate\Http\Request;
 use App\Models\Announcements;
+use App\Models\User;
+use App\Notifications\announcementnoti;
 use App\Http\Requests\CreateAnnouRequest;
+use Illuminate\Support\Facades\Notification;
+
 
 
 class AnnouncementsController extends Controller
@@ -48,6 +52,11 @@ class AnnouncementsController extends Controller
         }
         $datatoinsert->user()->associate(auth()->user());
 
+        //notification
+        $users=User::where('id','!=',auth()->user()->id)->get();
+        $users_name = auth()->User()->username;
+        Notification::send($users,new announcementnoti($datatoinsert->id,$users_name,$datatoinsert->title));
+
         $datatoinsert->save();
        return redirect()->route('indexannouncement')->with(['success'=>'added successfully']);
     }
@@ -55,10 +64,10 @@ class AnnouncementsController extends Controller
     public function detailsannouncement($id)
     {
        $announcement = announcements::find($id);
-       return view('annou.detailsannouncement', compact('announcement'),['user'=> auth()->user()]);
+      return view('annou.detailsannouncement', compact('announcement'),['user'=> auth()->user()]);
     }
 
-
+   
     /**
      * Display the specified resource.
      */

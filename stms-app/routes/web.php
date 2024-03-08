@@ -6,6 +6,11 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\AnnouncementsController;
+use App\Http\Controllers\DashController;
+use App\Http\Controllers\CommonQuestionsController;
+use App\Http\Controllers\TrainingInstitutionController;
+
+
 
 
 /*
@@ -30,7 +35,7 @@ Route::get('/logout', [AuthController::class,'logout'])->name('logout');
 Route::group(['middleware'=>'auth'], function (){
 
     Route::get('/personal', [ProfileController::class,'profile'])->name('personal.profile');
-    Route::get('/Dashboard', [ProfileController::class,'sideBar'])->name('dashboard');
+    Route::get('/Dash', [ProfileController::class,'sideBar'])->name('dashboard');
 
     Route::get('/manage_students', [StudentsController::class,'show'])->name('show.students');
     Route::post('/manage_students/add', [StudentsController::class,'add'])->name('add.students');
@@ -46,6 +51,12 @@ Route::group(['middleware'=>'auth'], function (){
     Route::get('/annou.detailsannouncement/{id}',[AnnouncementsController::class,'detailsannouncement'])->name("detailsannouncement");
     Route::get('/download/{attachment}',[AnnouncementsController::class,'download'])->name("download");
 
+    Route::get('/Dashboard',[DashController::class,'index'])->name("Dashindex");
+    Route::get('/Dashboardshow',[DashController::class,'show'])->name("Dashshow");
+    Route::get('/dashcontent.CommonQuestions',[CommonQuestionsController::class,'index'])->name("commonindex");
+    Route::post('/storeQ',[CommonQuestionsController::class,'store'])->name("storequestion");
+    Route::get('/dashcontent.TrainingInstitutions',[TrainingInstitutionController::class,'index'])->name("trainingindex");
+    Route::post('/storeR',[TrainingInstitutionController::class,'store'])->name("storeR");
 });
 
 

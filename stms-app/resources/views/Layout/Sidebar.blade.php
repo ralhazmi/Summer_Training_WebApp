@@ -68,7 +68,7 @@
    <div class="h-full px-3 pb-4 overflow-y-auto bg-teal-600 ">
       <ul class="space-y-2 font-medium">
          <li>
-            <a href="{{route('dashboard')}}" class="flex items-center p-2 text-blue-900 rounded-lg  hover:bg-gray-100  group">
+            <a href="{{route('Dashindex')}}" class="flex items-center p-2 text-blue-900 rounded-lg  hover:bg-gray-100  group">
                <i class="fa fa-solid fa-house w-5 h-5 text-blue-900 transition duration-75  group-hover:text-blue-900 " >
                 </i>
                <span class="ms-3">Dashboard</span>
