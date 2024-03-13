@@ -86,9 +86,26 @@
 
 
 <div class="flex justify-end rounded-md ">
-<div class="block space-y-4 md:flex md:space-y-0 md:space-x-4 rtl:space-x-reverse">
+<div class="w-full block space-y-4 md:flex md:space-y-0 md:space-x-4 rtl:space-x-reverse">
+
+
+<form class="w-full max-w-lg me-auto shadow-lg" method="get" action="{{route('search')}}">
+    <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only ">Search</label>
+    <div class="relative">
+        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+            <svg class="w-4 h-4 text-blue-900 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+            </svg>
+        </div>
+        <input type="search" name="search" value="{{isset($search) ? $search:''}}" id="default-search" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-900 focus:border-blue-900  " placeholder="Search By Training Entity, Name..." />
+        <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-blue-900 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 ">Search</button>
+    </div>
+</form>
+
+
+
     <!-- Modal toggle -->
-    <button data-modal-target="large-modal1" data-modal-toggle="large-modal1" class="block w-full md:w-auto text-white bg-blue-900 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" type="button">+ Add Student
+    <button  style="margin-top:2px !important ;margin-bottom:2px !important;" data-modal-target="large-modal1" data-modal-toggle="large-modal1" class="block shadow-lg w-full md:w-auto mt-3 mb-5 text-white bg-blue-900 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" type="button">+ Add Student
     </button>
 </div>
 </div>
@@ -160,7 +177,7 @@
          </div>
     </div>
 </div>
-<div class="relative mt-2 overflow-x-auto shadow-md sm:rounded-lg">
+<div class="relative mt-4 overflow-x-auto shadow-lg sm:rounded-lg">
     <table class="w-full text-sm text-center rtl:text-right text-blue-900 ">
         <thead class="text-xs text-blue-900 uppercase ">
             <tr>
@@ -245,7 +262,7 @@
                                     </button>
                                 </div>
                                 <!-- Modal body -->
-                                <form action="{{ route('update.students', ['student' => $student]) }}" method="post" style="width:80%; margin:0 auto;">
+                                <form action="{{ route('update.students', ['student' => $student->id]) }}" method="post" style="width:80%; margin:0 auto;">
                                    @csrf
                                    @method('put')
                                     <div class="flex mb-4">

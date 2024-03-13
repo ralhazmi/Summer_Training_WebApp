@@ -31,13 +31,13 @@ class CommonQuestionsController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $commonquestion= new commonquestions;
         $commonquestion['question']=$request->question;
         $commonquestion['answer']=$request->answer;
 
         $commonquestion->save();
-        return redirect()->route('commonindix');
+        return redirect()->route('dashboard');
     }
 
     /**

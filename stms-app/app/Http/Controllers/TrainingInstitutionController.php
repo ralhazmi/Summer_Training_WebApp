@@ -15,8 +15,8 @@ class TrainingInstitutionController extends Controller
     public function index()
     {
         $Training= traininginstitution::all();
-        return view('dashcontent.TrainingInstitutions',compact('Training'),['user'=> auth()->user()]);
-    
+        return view('dashboard',compact('Training'),['user'=> auth()->user()]);
+
     }
 
     /**
@@ -24,7 +24,7 @@ class TrainingInstitutionController extends Controller
      */
     public function create()
     {
-        return view('dashcontent.TrainingInstitutions');
+        return view('dashboard');
     }
 
     /**
@@ -37,9 +37,9 @@ class TrainingInstitutionController extends Controller
         $TrainingInstitution['address']=$request->address;
         $TrainingInstitution['company_number']=$request->company_number;
         $TrainingInstitution['company_website']=$request->company_website;
-    
+
         $TrainingInstitution->save();
-        return redirect()->route('trainingindex');
+        return redirect()->route('dashboard');
     }
 
     /**

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class StudentsController extends Controller
 {
@@ -79,4 +80,21 @@ class StudentsController extends Controller
         // You can redirect back or return a response as needed
         return redirect(route('show.students'))->with('Success','Activation Status updated succesffully');
     }
+
+    public function search(Request $request){
+        $query= DB::table('users');
+        $search = $request->search;
+        if ($search){
+            $query->where(function($q)use($search){
+                $q->where('username','like','%'.$search.'%')
+                ->orWhere('company','like','%'.$search.'%')
+                ->orWhere('major','like','%'.$search.'%');
+            });
+        }
+        $data = $query->where('role', 1)->paginate(4);
+
+        return view('manageStudents.manageStudents',compact('data','search'),['user'=> auth()->user()]);
+
+    }
+
 }

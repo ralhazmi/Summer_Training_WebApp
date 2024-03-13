@@ -41,6 +41,7 @@ Route::group(['middleware'=>'auth'], function (){
     Route::post('/manage_students/add', [StudentsController::class,'add'])->name('add.students');
     Route::put('/manage_students/{student}/update', [StudentsController::class,'updatestuedent'])->name('update.students');
     Route::any('/update-activation/{id}/{status}',  [StudentsController::class,'updateActivation'])->name('update.Activation');
+    Route::get('/search',  [StudentsController::class,'search'])->name('search');
 
     Route::get('/req.RQ', [RequestController::class, 'index'])->name("indexrequest");
     Route::post('/store-request', [RequestController::class, 'store'])->name("storerequest");
