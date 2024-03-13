@@ -78,7 +78,7 @@
 </svg>
 </button>
             <p class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Requests </p>
-            <p class="font-semibold text-gray-900 ">Published Requests(..)</p>
+            <p class="font-semibold text-gray-900 ">Published Requests({{$previousRequests}})</p>
            </a> 
     </div>
     <div id="dropdownAvatar" class="z-20 hidden w-full max-w-sm bg-white divide-y divide-gray-100 rounded-lg shadow " aria-labelledby="dropdownUserAvatarButton">
