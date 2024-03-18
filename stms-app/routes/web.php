@@ -9,6 +9,8 @@ use App\Http\Controllers\AnnouncementsController;
 use App\Http\Controllers\DashController;
 use App\Http\Controllers\CommonQuestionsController;
 use App\Http\Controllers\TrainingInstitutionController;
+use App\Http\Controllers\ReportsController;
+
 
 
 
@@ -60,6 +62,13 @@ Route::group(['middleware'=>'auth'], function (){
     Route::post('/storeQ',[CommonQuestionsController::class,'store'])->name("storequestion");
     Route::get('/dashcontent.TrainingInstitutions',[TrainingInstitutionController::class,'index'])->name("trainingindex");
     Route::post('/storeR',[TrainingInstitutionController::class,'store'])->name("storeR");
+   
+    Route::get('/Reports.index',[ReportsController::class,'index'])->name("Reportsindex");
+    Route::get('/Reports.show/{id}',[ReportsController::class,'show'])->name("Reportshow");
+    Route::post('/StudentReports/store',[ReportsController::class,'store'])->name("Reportstore");
+    Route::get('/download/{attachment}',[ReportsController::class,'download'])->name("download"); 
+    Route::post('/reports/{id}/give-degree', [ReportsController::class, 'giveDegree'])->name('reports.give-degree');
+
 });
 
 

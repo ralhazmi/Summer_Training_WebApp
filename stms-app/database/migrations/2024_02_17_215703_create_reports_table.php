@@ -13,11 +13,13 @@ return new class extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
         $table->id(); // This will create a big integer column for 'id'
-        $table->unsignedBigInteger('user_id')->nullable(false); // Use unsignedBigInteger to match the 'id' column in 'users'
+        $table->unsignedBigInteger('user_id')->nullable(); // Use unsignedBigInteger to match the 'id' column in 'users'
         $table->string('report_title')->nullable(false);
-        $table->binary('report_file')->nullable(false);
         $table->unsignedBigInteger('assign_to')->nullable();
         $table->timestamps();
+        $table->binary('attachment');
+        $table->date('date');
+        $table->integer('degree')->nullable(); // Define degree column as an integer
         $table->foreign('user_id')->references('id')->on('users');
         $table->foreign('assign_to')->references('id')->on('users')->where('role', '=', 2);
         });
