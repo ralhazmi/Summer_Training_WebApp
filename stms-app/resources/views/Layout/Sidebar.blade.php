@@ -15,6 +15,7 @@
     --tw-bg-opacity: 1;
     background-color: #51c3cd !important;
   }
+
   </style>
 </head>
 <body>
@@ -75,7 +76,7 @@
             </a>
          </li>
          <li>
-            <a href="#" class="flex items-center p-2 text-blue-900 rounded-lg  hover:bg-gray-100  group">
+            <a href="{{route('Reportsindex')}}" class="flex items-center p-2 text-blue-900 rounded-lg  hover:bg-gray-100  group">
                <i class=" fa fa-solid fa-file-lines flex-shrink-0 w-5 h-5 text-blue-900 transition duration-75 group-hover:text-blue-900 " >
                </i>
                @if ($user->role == 2)
@@ -244,5 +245,7 @@
 
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
 </html>
 

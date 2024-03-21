@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\RequestController;
+use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\AnnouncementsController;
 use App\Http\Controllers\DashController;
 use App\Http\Controllers\CommonQuestionsController;
@@ -49,7 +50,8 @@ Route::group(['middleware'=>'auth'], function (){
     Route::post('/store-request', [RequestController::class, 'store'])->name("storerequest");
     Route::get('/download-request/{attachment}',[RequestController::class,'download'])->name("download");
     Route::get('/req.requestdetails/{id}',[RequestController::class,'requestdetails'])->name("requestdetails");
-    Route::post('/requests/{id}/update-status',[RequestController::class,'updatestatus'])->name("updatestatus");
+    Route::post('/requestReply/{request_id}',[ReplyController::class,'store'])->name("requestReply");
+    Route::get('/requestsFilter', [RequestController::class, 'requestsFilter'])->name('requestsFilter');
 
     Route::get('/annou.Announcements',[AnnouncementsController::class,'index'])->name("indexannouncement");
     Route::post('/store',[AnnouncementsController::class,'store'])->name("storeannouncement");
@@ -62,11 +64,11 @@ Route::group(['middleware'=>'auth'], function (){
     Route::post('/storeQ',[CommonQuestionsController::class,'store'])->name("storequestion");
     Route::get('/dashcontent.TrainingInstitutions',[TrainingInstitutionController::class,'index'])->name("trainingindex");
     Route::post('/storeR',[TrainingInstitutionController::class,'store'])->name("storeR");
-   
+
     Route::get('/Reports.index',[ReportsController::class,'index'])->name("Reportsindex");
     Route::get('/Reports.show/{id}',[ReportsController::class,'show'])->name("Reportshow");
     Route::post('/StudentReports/store',[ReportsController::class,'store'])->name("Reportstore");
-    Route::get('/download/{attachment}',[ReportsController::class,'download'])->name("download"); 
+    Route::get('/download/{attachment}',[ReportsController::class,'download'])->name("download");
     Route::post('/reports/{id}/give-degree', [ReportsController::class, 'giveDegree'])->name('reports.give-degree');
 
 });

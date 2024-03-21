@@ -10,11 +10,28 @@ class Requests extends Model
     use HasFactory;
     public $table ="requests";
     protected $fillable = [
-        'email',
+        'user_id',
+        'userTo',
         'request_title',
-        'date',
         'content',
         'attachment',
-        'request_status',
+        'date',
     ];
+
+    // Define the relationship with the User model for the user who created the request
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function supervisor()
+    {
+        return $this->belongsTo(User::class, 'userTo');
+    }
+
+    public function replies()
+    {
+        return $this->hasMany(Reply::class, 'request_id');
+    }
+
 }

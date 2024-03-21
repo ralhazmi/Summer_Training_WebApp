@@ -57,6 +57,14 @@ class PostUsers extends Seeder
                 'major'=> 'Information Technology',
                 'password'=>Hash::make(12345678),
                 'role'=>2,
+            ],
+            [
+                'id'=>123456788,
+                'username'=>'Afef',
+                'email'=> 'Supervisor2@qu.edu.sa',
+                'major'=> 'Information Technology',
+                'password'=>Hash::make(12345678),
+                'role'=>2,
             ]
         ];
 

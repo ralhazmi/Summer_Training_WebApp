@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage; 
+use Exception;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 use App\Models\Reports;
 use App\Http\Requests\CreateReport;
 use App\Http\Requests\AddDegree;
@@ -53,7 +55,7 @@ class ReportsController extends Controller
 
     }
 
-    
+
     public function show($id)
     {
        $report = Reports::find($id);
@@ -79,15 +81,15 @@ class ReportsController extends Controller
             $report = Reports::findOrFail($id);
             $report->degree = $request->degree;
             $report->save();
-        
+
             return redirect()->back()->with('success', 'Degree saved successfully!');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             // Log the error
-            \Log::error($e->getMessage());
+            Log::error($e->getMessage());
             return redirect()->back()->with('error', 'Failed to save degree.');
         }
     }
-    
+
     /**
      * Show the form for editing the specified resource.
      */

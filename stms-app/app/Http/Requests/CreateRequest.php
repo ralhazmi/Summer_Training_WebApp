@@ -22,14 +22,14 @@ class CreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required',
+            'userTo' => 'required',
             'request_title' => 'required',
             'content'=> 'required'
         ];
     }
     public function message(){
         return[
-            'email.required'=> 'The email is required',
+            // 'email.required'=> 'The email is required',
             'request_title.required'=> 'The name of tittle is required',
             'content.required'=> 'The content is required',
 
