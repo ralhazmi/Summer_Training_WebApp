@@ -14,7 +14,14 @@
   .bg-teal-600 {
     --tw-bg-opacity: 1;
     background-color: #51c3cd !important;
+
   }
+  #dropdownUsersButton {
+    position: absolute;
+    top: 30px;
+    right: 70px;
+}
+
 
   </style>
 </head>
@@ -33,6 +40,8 @@
           <img src="{{ asset('images/Durba-removebg-preview.png') }}" class="h-14 mt-0 me-3" alt=" Logo" />
         </a>
       </div>
+      <!--notifications-->
+<!--end notifications-->
       <div class="flex items-center">
           <div class="flex items-center ms-3">
             <div>
@@ -60,6 +69,8 @@
               </ul>
             </div>
           </div>
+          
+@include('Layout.allnotifications')
         </div>
     </div>
   </div>
@@ -248,4 +259,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
 </html>
+
+
 

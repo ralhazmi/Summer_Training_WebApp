@@ -70,7 +70,8 @@ Route::group(['middleware'=>'auth'], function (){
     Route::post('/StudentReports/store',[ReportsController::class,'store'])->name("Reportstore");
     Route::get('/download/{attachment}',[ReportsController::class,'download'])->name("download");
     Route::post('/reports/{id}/give-degree', [ReportsController::class, 'giveDegree'])->name('reports.give-degree');
-
+    
+    Route::get('/MarkAsRead_all',[ReportsController::class,'MarkAsRead_all'])->name('MarkAsRead_all');
 });
 
 

@@ -43,9 +43,9 @@
     </ul>
 </div>
 
-    <div class="block space-y-4 md:flex md:space-y-0 md:space-x-4 rtl:space-x-reverse">
+    <div class="block space-y-4 md:flex md:space-y-0 md:space-x-4 rtl:space-x-reverse ">
         @if(auth()->user()->role == 1)
-        <button data-modal-target="small-modal" data-modal-toggle="small-modal" class="block w-52 md:w-auto text-white bg-blue-900 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" type="button">Add Request</button>
+        <button data-modal-target="small-modal" data-modal-toggle="small-modal" class=" transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 block w-52 md:w-auto text-white bg-blue-900 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" type="button">Add Request</button>
         @endif
     </div>
 </div></div>
@@ -82,14 +82,14 @@
                     </div>
                     <div class="flex mb-5">
                         <div class="w-1/2 mr-2">
-                            <label for="request_title" class="text-sm text-gray-900 ">Title</label>
+                            <label for="request_title" class="block mb-2 text-sm font-medium text-gray-900 ">Title</label>
                             <input type="text" id="request_title" name="request_title" value="" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="Write title here..." required />
                             @error('request_title')
                             <span class="text-red-800">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="w-1/2 ml-2">
-                            <label for="date" class="text-sm text-gray-900 ">Date</label>
+                            <label for="date" class="block mb-2 text-sm font-medium text-gray-900  ">Date</label>
                             <input type="date" id="date" name="date" value="" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required />
                             @error('date')
                             <span class="text-red-800">{{ $message }}</span>
@@ -97,7 +97,7 @@
                         </div>
                     </div>
                     <div>
-                        <label for="content" class="text-sm text-gray-900 text-black">Content</label>
+                        <label for="content" class="block mb-2 text-sm font-medium text-gray-900 ">Content</label>
                         <textarea id="content" rows="3" class="p-2.5 w-full text-sm text-gray-900 rounded-lg border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Write content here..." name="content">{{ old('content') }}</textarea>
                         @error('content')
                         <span class="text-red-800">{{ $message }}</span>

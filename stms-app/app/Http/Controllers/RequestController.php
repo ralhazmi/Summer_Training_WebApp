@@ -6,6 +6,8 @@ use App\Models\User;
 use App\Models\Requests;
 use App\Models\Reply;
 use App\Http\Requests\CreateRequest;
+use App\Notifications\requestnoti;
+use Illuminate\Support\Facades\Notification;
 
 class RequestController extends Controller
 {
@@ -49,6 +51,11 @@ class RequestController extends Controller
              $attachment->move('attachmentFile', $attachmentName);
              $newRequest->attachment = $attachmentName;
          }
+          //notification
+        $usersreq=User::where('role','2')->get();
+        $previousRequests = requests::latest()->first();
+        Notification::send($usersreq,new requestnoti($previousRequests));
+
 
          // Save the new request
          $newRequest->save();

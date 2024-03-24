@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Exception;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage; 
+use Illuminate\Support\Facades\Log; 
 use App\Models\Reports;
 use App\Http\Requests\CreateReport;
 use App\Http\Requests\AddDegree;
+use App\Notifications\reportsnoti;
+use App\Models\User;
+use Illuminate\Support\Facades\Notification;
 
 
 class ReportsController extends Controller
@@ -19,7 +22,7 @@ class ReportsController extends Controller
      */
     public function index()
     {
-        $data=Reports::all();
+        $data=Reports::paginate(10);;
         return view('Reports.index',compact('data'),['user'=> auth()->user()]);
     }
 
@@ -50,12 +53,19 @@ class ReportsController extends Controller
             $datatoinsert->attachment=$attachmentname;
         }
 
+         
+        //notification
+        $usersrep=User::where('role','2')->get();
+        $Reports = Reports::latest()->first();
+        Notification::send($usersrep,new reportsnoti($Reports));
+
+
         $datatoinsert->save();
        return redirect()->route('Reportsindex')->with(['success'=>'added successfully']);
 
     }
 
-
+    
     public function show($id)
     {
        $report = Reports::find($id);
@@ -81,7 +91,7 @@ class ReportsController extends Controller
             $report = Reports::findOrFail($id);
             $report->degree = $request->degree;
             $report->save();
-
+        
             return redirect()->back()->with('success', 'Degree saved successfully!');
         } catch (Exception $e) {
             // Log the error
@@ -89,7 +99,7 @@ class ReportsController extends Controller
             return redirect()->back()->with('error', 'Failed to save degree.');
         }
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      */
@@ -113,4 +123,15 @@ class ReportsController extends Controller
     {
         //
     }
+
+    public function MarkAsRead_all(request $request)
+    {
+        $userUnreadNotification = auth()->user()->unreadNotifications;
+        if($userUnreadNotification){
+            $userUnreadNotification-> markAsRead();
+            return back();
+        }
+    }
+
+
 }

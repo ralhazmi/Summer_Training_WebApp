@@ -20,8 +20,8 @@ class AnnouncementsController extends Controller
      */
     public function index()
     {
-        $data=Announcements::paginate(4);
-        return view('annou.Announcements',compact('data'),['user'=> auth()->user()]);
+        $datann=Announcements::paginate(4);
+        return view('annou.Announcements',compact('datann'),['user'=> auth()->user()]);
     }
 
     /**
@@ -54,9 +54,9 @@ class AnnouncementsController extends Controller
 
         //notification
         $users=User::where('id','!=',auth()->user()->id)->get();
-        $users_name = auth()->User()->username;
-        Notification::send($users,new announcementnoti($datatoinsert->id,$users_name,$datatoinsert->title));
-
+        $Announcements = Announcements::latest()->first();
+        Notification::send($users,new announcementnoti($Announcements));
+        
         $datatoinsert->save();
        return redirect()->route('indexannouncement')->with(['success'=>'added successfully']);
     }

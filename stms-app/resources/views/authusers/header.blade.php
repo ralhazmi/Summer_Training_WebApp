@@ -77,6 +77,13 @@
 </nav>
 <div class="p-4 ">
   <div class="p-4  rounded-lg  mt-16">
+  <div class="flex justify-end rounded-md ">
+<a href="{{route('dashboard')}}" class="inline-flex items-center text-lg text-blue-900 hover:underline">
+<svg class="w-96 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+</svg>
+</a>
+</div>
     @yield('body')
    </div>
 </div>

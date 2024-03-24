@@ -5,6 +5,8 @@ namespace App\Notifications;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use App\Models\Requests;
+use App\Models\User;
 use Illuminate\Notifications\Notification;
 
 class requestnoti extends Notification
@@ -14,9 +16,11 @@ class requestnoti extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    private $previousRequests;
+
+    public function __construct($previousRequests)
     {
-        //
+        $this->previousRequests=$previousRequests;
     }
 
     /**
@@ -29,10 +33,12 @@ class requestnoti extends Notification
         return ['database'];
     }
 
-    public function toArray(object $notifiable): array
+    public function toDatabase(object $notifiable): array
     {
         return [
-            //
+            'id'=>$this->previousRequests->id ?? 'default_value',
+            'title'=>'Add new request',
+            'user'=> auth()->User()->username,
         ];
     }
 }

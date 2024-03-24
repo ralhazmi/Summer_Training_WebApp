@@ -22,7 +22,7 @@
     @endif
         <div class="text-blue-800 font-semibold">Content :{{$request->content}}</div>
         <div class="text-blue-800 font-semibold">Date :{{$request->date}}</div>
-        <div class="text-blue-900 font-semibold">Status:
+        <div class="text-blue-800 font-semibold">Status:
                 @if($request->request_status  == 1)
                 <p class="h-2.5 w-2.5 rounded-full bg-green-500 inline-block me-2"></p>New
                 @elseif($request->request_status  == 2)

@@ -8,6 +8,8 @@ use App\Models\CommonQuestions;
 use App\Models\TrainingInstitution;
 use App\Models\Announcements;
 use App\Models\Requests;
+use App\Models\Reports;
+
 
 
 
@@ -20,11 +22,12 @@ class DashController extends Controller
      */
     public function index()
     {
-        $data=Announcements::count();
+        $datann=Announcements::count();
         $previousRequests=Requests::count();
+        $data=Reports::count();
         $Common=commonquestions::all();
         $Training= traininginstitution::all();
-        return view('Dash',compact('Common','Training','data','previousRequests'),['user'=> auth()->user()]);
+        return view('Dash',compact('Common','Training','datann','previousRequests','data'),['user'=> auth()->user()]);
     }
    
     /**

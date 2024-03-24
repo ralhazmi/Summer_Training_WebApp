@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use App\Models\User;
 
 class reportsnoti extends Notification
 {
@@ -14,9 +15,13 @@ class reportsnoti extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    private $Reports;
+
+    public function __construct($Reports)
     {
-        //
+        $this->Reports=$Reports;
+
+
     }
 
     /**
@@ -30,10 +35,12 @@ class reportsnoti extends Notification
     }
 
    
-    public function toArray(object $notifiable): array
+    public function toDatabase(object $notifiable): array
     {
         return [
-            //
+            'id'=>$this->Reports->id ?? 'default_value',
+            'title'=>'Add new report',
+            'user'=> auth()->User()->username,
         ];
     }
 }

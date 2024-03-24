@@ -105,7 +105,7 @@
 
 
     <!-- Modal toggle -->
-    <button  style="margin-top:2px !important ;margin-bottom:2px !important;" data-modal-target="large-modal1" data-modal-toggle="large-modal1" class="block shadow-lg w-full md:w-auto mt-3 mb-5 text-white bg-blue-900 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" type="button">+ Add Student
+    <button  style="margin-top:2px !important ;margin-bottom:2px !important;" data-modal-target="large-modal1" data-modal-toggle="large-modal1" class="transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 block shadow-lg w-full md:w-auto mt-3 mb-5 text-white bg-blue-900 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" type="button">+ Add Student
     </button>
 </div>
 </div>

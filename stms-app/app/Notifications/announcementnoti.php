@@ -14,14 +14,11 @@ class announcementnoti extends Notification
     /**
      * Create a new notification instance.
      */
-     private  $datatoinsert_id;
-     private  $users_name;
-     private   $title;
-    public function __construct($datatoinsert_id,$users_name,$title)
+     private  $Announcements;
+    public function __construct($Announcements)
     {
-        $this->datatoinsert_id = $datatoinsert_id;
-        $this->users_name = $users_name;
-        $this->title = $title;
+        $this->Announcements = $Announcements;
+      
     }
 
     /**
@@ -37,9 +34,9 @@ class announcementnoti extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-            'datatoinsert_id'=>$this->datatoinsert_id,
-            'users_name'=>$this->users_name,
-            'title'=>$this->title,
+            'id'=>$this->Announcements->id ?? 'default_value',
+            'title'=>'Add new announcement',
+            'user'=> auth()->User()->username,
         ];
     }
 }
