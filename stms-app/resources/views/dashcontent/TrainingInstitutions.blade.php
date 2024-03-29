@@ -55,10 +55,10 @@
 <!--show recommendation-->
 <p class="text-lg font-semibold mb-4 text-blue-900 ">Recommendations of Summer Training</p>
 @if (count($Training) > 0)
-<div class="w-full max-w-md bg-white shadow rounded-lg p-5">
+<div class="w-full max-w-md bg-white shadow rounded-lg p-5 ">
 @foreach($Training as $index => $Trainin)
-<div class="flex items-center justify-between">
-    <address class="relative bg-gray-50 p-4 rounded-lg border border-gray-200 not-italic grid grid-cols-2">
+<div class="flex items-center justify-between w-full">
+    <address class="w-full relative bg-gray-50 p-4 rounded-lg border border-gray-200 not-italic grid grid-cols-2">
         <div class="space-y-2 text-blue-900  leading-loose hidden sm:block">
             Name of company <br />
             Email of company <br />
@@ -69,7 +69,7 @@
         {{$Trainin->company_name}} <br />
         {{$Trainin->address}}<br />
         {{$Trainin->company_number}}<br/>
-       <a  href="{{$Trainin->company_website}}"class="font-medium text-blue-800 hover:underline"> {{$Trainin->company_website}}</a>
+       <a  href="{{$Trainin->company_website}}"class="font-medium text-blue-700 hover:underline"> Company Website </a>
      </div>
      <button data-copy-to-clipboard-target="contact-details-{{$index}}" data-copy-to-clipboard-content-type="textContent" data-tooltip-target="tooltip-contact-details-{{$index}}" class="copy-btn absolute end-2 top-2 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg p-2 inline-flex items-center justify-center">
          <span id="default-icon-contact-details-{{$index}}">
@@ -89,10 +89,10 @@
         <div class="tooltip-arrow" data-popper-arrow></div>
     </div>
 </address>
-</div>       
+</div>
 @endforeach
 </div>
-@else 
+@else
 <p class="font-normal text-blue-800 text-blue-500"> There are currently no Recommendations loaded!.</p>
 @endif
 

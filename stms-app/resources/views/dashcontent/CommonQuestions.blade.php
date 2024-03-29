@@ -40,7 +40,7 @@
     </div>
 </div>
 <!--show the questions -->
-<p class="text-lg font-semibold mb-4 text-blue-900">Common questions</p>
+<p class="text-lg font-semibold mb-4 text-blue-900">Common Questions</p>
 <div id="accordion-collapse" data-accordion="collapse">
 @forelse($Common as $question)
   <h2 id="accordion-collapse-heading-{{$loop->iteration}}">
@@ -58,6 +58,6 @@
 </div>
 @empty
             <p class="font-normal text-blue-800 text-blue-500"> There are currently no Commen questions loaded!.</p>
-            
+
 @endforelse
 

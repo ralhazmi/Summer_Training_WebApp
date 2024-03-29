@@ -72,20 +72,20 @@
 <li class="relative mb-6 sm:mb-0">
         <div class="mt-3 sm:pe-8">
             <a href="{{route('Reportsindex')}}" class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100">
-            
+
             <p class="mb-2 text-2xl font-bold tracking-tight text-blue-900">Reports</p>
             <p class="font-semibold text-blue-800">Published Requests({{$data}})</p>
-        </a> 
+        </a>
 
 </li>
 <!--announcement-->
 <li class="relative mb-6 sm:mb-0">
         <div class="mt-3 sm:pe-8 ">
            <a href="{{route('indexannouncement')}}"class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100">
-            
+
            <p class="mb-2 text-2xl font-bold tracking-tight text-blue-900">Announcements</p>
             <p class="font-semibold text-blue-800">Published Announcement({{$datann}})</p>
-        </a> 
+        </a>
 
     </li>
 <!--report-->
@@ -93,26 +93,16 @@
 <li class="relative mb-6 sm:mb-0">
         <div class="mt-3 sm:pe-8">
         <a href="{{route('indexrequest')}}" class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100">
-            
+
         <p class="mb-2 text-2xl font-bold tracking-tight text-blue-900">Requests </p>
             <p class="font-semibold text-blue-800 ">Published Requests({{$previousRequests}})</p>
-           </a> 
-   
+           </a>
+
         </div>
 </li>
 </ol>
 <br/>
 <ol class=" sm:flex">
-    <li class="relative mb-6 sm:mb-0">
-        <br/>
-        <div class="flex items-center">
-            <div class="hidden sm:flex w-full bg-gray-200 h-0.5 "></div>
-        </div>
-        <div class="mt-3 sm:pe-8">
-           
-        @include('dashcontent.CommonQuestions')
-    </div>
-    </li>
     <li class="relative mb-6 sm:mb-0">
     <br/>
         <div class="flex items-end">
@@ -120,6 +110,16 @@
         </div>
         <div class="mt-3 sm:pe-8">
         @include('dashcontent.TrainingInstitutions')
+    </div>
+    </li>
+    <li class="relative mb-6 sm:mb-0">
+        <br/>
+        <div class="flex items-center">
+            <div class="hidden sm:flex w-full bg-gray-200 h-0.5 "></div>
+        </div>
+        <div class="mt-3 sm:pe-8">
+
+        @include('dashcontent.CommonQuestions')
     </div>
     </li>
 </ol>

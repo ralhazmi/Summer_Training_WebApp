@@ -14,13 +14,13 @@
         </div>
     </div> -->
 <div class="h-full mt-0 flex items-center justify-center w-full">
-<div class=" w-fit bg-white overflow-hidden shadow rounded-lg border">
+<div class=" w-full bg-white overflow-hidden shadow rounded-lg border md:w-fit sm:w-fit">
     <div class="px-4 py-5 sm:px-6">
         <h3 class="text-lg leading-6 font-lg font-bold text-blue-900">
-            User Information
+            Personal Information
         </h3>
     </div>
-    <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
+    <div class="border-t border-gray-200 px-4 py-5 sm:p-3">
         <dl class="sm:divide-y sm:divide-gray-200">
             <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                 <dt class="text-sm font-medium font-bold text-gray-500">
@@ -68,7 +68,7 @@
                     Training Entity
                 </dt>
                 <dd class="mt-1 text-sm text-blue-900 sm:mt-0 sm:col-span-2">
-                Unkown
+                {{$user->company}}
                 </dd>
             </div>
             @endif

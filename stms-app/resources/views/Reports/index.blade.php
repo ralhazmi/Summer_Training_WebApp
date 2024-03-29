@@ -29,8 +29,8 @@
             <!-- Modal body -->
             <div class="p-4 md:p-5 space-y-4">
             <form method="post" action="{{ route('Reportstore') }}" enctype="multipart/form-data" style="width:80%; margin:0 auto;">
-        
-        @csrf <!-- CSRF token (not needed since it's not a Laravel application) -->     
+
+        @csrf <!-- CSRF token (not needed since it's not a Laravel application) -->
 
     <div class="flex mb-5">
     <div class="w-1/2 mr-2">
@@ -78,12 +78,16 @@
 
                     <h4 class="  font-semibold mb-4 text-blue-900">{{ $report->report_title }}</h4><br>
 
-        
+
                 <div class="text-blue-900 font-semibold">Date: {{$report->date}}</div>
                 <div class="text-blue-900 font-semibold">Student ID: {{ $report->user_id }}</div>
-                <div class="text-blue-900 font-semibold">Degree: {{ $report->degree }}</div>
 <!-- Add more fields as needed -->
-<a href="{{route('Reportshow',$report->id)}}" class="font-medium text-blue-800 hover:underline">View details</a>
+
+<a href="{{route('Reportshow',$report->id)}}" class="font-medium text-blue-800 hover:underline"><button class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white  focus:ring-4 focus:outline-none focus:ring-green-200 ">
+<span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white  rounded-md group-hover:bg-opacity-0">
+<i class="fa-solid fa-circle-info " style="color: #00519b;"></i><i class="ml-2">View Details</i>
+</span>
+</button></a>
 </div>
 @endforeach
 @else
