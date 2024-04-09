@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="{{ asset('images/Durba-removebg-preview.png') }}" type="image/x-icon"/>
   <title>@yield('title','Durba')</title>
+  <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <!-- Include Tailwind CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
   <script src="https://cdn.tailwindcss.com"></script>
@@ -69,7 +71,7 @@
               </ul>
             </div>
           </div>
-          
+
 @include('Layout.allnotifications')
         </div>
     </div>
@@ -124,7 +126,7 @@
             </a>
          </li>
          <li>
-            <a href="#" class="flex items-center p-2 text-blue-900 rounded-lg  hover:bg-gray-100  group">
+            <a href="{{route('getUsers')}}" class="flex items-center p-2 text-blue-900 rounded-lg  hover:bg-gray-100  group">
                <i class=" fa fa-solid fa-id-badge flex-shrink-0 w-5 h-5 text-blue-900 transition duration-75  group-hover:text-blue-900 ">
                </i>
                <span class="flex-1 ms-3 whitespace-nowrap">Contact with students</span>
@@ -133,7 +135,7 @@
          @endif
          @if ($user->role == 1)
          <li>
-            <a href="#" class="flex items-center p-2 text-blue-900 rounded-lg  hover:bg-gray-100  group">
+            <a href="{{route('getUsers')}}" class="flex items-center p-2 text-blue-900 rounded-lg  hover:bg-gray-100  group">
                <i class="fa fa-solid fa-id-card flex-shrink-0 w-5 h-5 text-blue-900 transition duration-75  group-hover:text-blue-900 " >
                </i>
                <span class="flex-1 ms-3 whitespace-nowrap">Contact with supervisor </span>
@@ -256,7 +258,9 @@
 
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+
+
 
 </html>
 

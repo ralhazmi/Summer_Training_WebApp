@@ -11,6 +11,7 @@ use App\Http\Controllers\DashController;
 use App\Http\Controllers\CommonQuestionsController;
 use App\Http\Controllers\TrainingInstitutionController;
 use App\Http\Controllers\ReportsController;
+use App\Http\Controllers\MessagesController;
 
 
 
@@ -70,8 +71,12 @@ Route::group(['middleware'=>'auth'], function (){
     Route::post('/StudentReports/store',[ReportsController::class,'store'])->name("Reportstore");
     Route::get('/download/{attachment}',[ReportsController::class,'download'])->name("download");
     Route::post('/reports/{id}/give-degree', [ReportsController::class, 'giveDegree'])->name('reports.give-degree');
-    
+
     Route::get('/MarkAsRead_all',[ReportsController::class,'MarkAsRead_all'])->name('MarkAsRead_all');
+
+    Route::get('/Users',[MessagesController::class,'getUsers'])->name('getUsers');
+    Route::get('/chat/{user_id}',[MessagesController::class,'chatForm'])->name('chatForm');
+    Route::post('/chat/{user_id}',[MessagesController::class,'sendMessage'])->name('sendMessage');
 });
 
 
