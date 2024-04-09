@@ -8,10 +8,10 @@ services:
     ports:
       - 9000:80
     environment:
-      PUSHER_APP_ID: 1783908
-      PUSHER_APP_KEY: 89262f7eab4890f4c68d
-      PUSHER_APP_SECRET: ad21b0d12c0c40e56816
-      PUSHER_APP_CLUSTER: eu
+      PUSHER_APP_ID: 
+      PUSHER_APP_KEY: 
+      PUSHER_APP_SECRET: 
+      PUSHER_APP_CLUSTER: 
   
   mysql_db:
     image: mysql:latest
