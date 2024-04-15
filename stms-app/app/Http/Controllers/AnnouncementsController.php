@@ -54,7 +54,7 @@ class AnnouncementsController extends Controller
 
         //notification
         $users=User::where('id','!=',auth()->user()->id)->get();
-        $Announcements = Announcements::latest()->first();
+        $Announcements = announcements::latest()->value('id');
         Notification::send($users,new announcementnoti($Announcements));
         
         $datatoinsert->save();

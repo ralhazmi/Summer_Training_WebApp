@@ -34,7 +34,8 @@ class announcementnoti extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-            'id'=>$this->Announcements->id ?? 'default_value',
+            
+            //'id'=> (int) $this->Announcements->id,
             'title'=>'Add new announcement',
             'user'=> auth()->User()->username,
         ];

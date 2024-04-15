@@ -56,7 +56,7 @@ class ReportsController extends Controller
          
         //notification
         $usersrep=User::where('role','2')->get();
-        $Reports = Reports::latest()->first();
+        $Reports = Reports::latest()->value('id');
         Notification::send($usersrep,new reportsnoti($Reports));
 
 

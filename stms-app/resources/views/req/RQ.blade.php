@@ -57,7 +57,7 @@
         <div class="relative bg-white rounded-lg shadow ">
             <!-- Modal header -->
             <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
-                <h3 class="text-xl font-medium text-gray-900">+Add Request</h3>
+                <h3 class="text-xl font-medium"style="color:#00519B;">+Add Request</h3>
                 <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center" data-modal-hide="small-modal">
                     <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
@@ -72,8 +72,8 @@
                     <div>
                         <!-- <label for="userTo" class="mb-5 text-sm text-gray-900 ">To</label>
                         <input type="userTo" id="userTo" name="userTo" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Enter your email" required /> -->
-                        <label for="userTo" class="block mb-2 text-sm font-medium text-gray-900 ">Send To: </label>
-                        <select id="userTo" name="userTo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
+                        <label for="userTo" class="block mb-2 text-sm font-medium "style="color:#00519B;">Send To: </label>
+                        <select id="userTo" name="userTo" class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "style="color:#00519B;">
                             <option value="">Select Supervisor...</option>
                             @foreach($users as $supervisor)
                             <option value="{{ $supervisor->id }}">{{ $supervisor->username }}</option>
@@ -82,14 +82,14 @@
                     </div>
                     <div class="flex mb-5">
                         <div class="w-1/2 mr-2">
-                            <label for="request_title" class="block mb-2 text-sm font-medium text-gray-900 ">Title</label>
+                            <label for="request_title" class="block mb-2 text-sm font-medium "style="color:#00519B;">Title</label>
                             <input type="text" id="request_title" name="request_title" value="" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="Write title here..." required />
                             @error('request_title')
                             <span class="text-red-800">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="w-1/2 ml-2">
-                            <label for="date" class="block mb-2 text-sm font-medium text-gray-900  ">Date</label>
+                            <label for="date" class="block mb-2 text-sm font-medium   "style="color:#00519B;">Date</label>
                             <input type="date" id="date" name="date" value="" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required />
                             @error('date')
                             <span class="text-red-800">{{ $message }}</span>
@@ -97,14 +97,14 @@
                         </div>
                     </div>
                     <div>
-                        <label for="content" class="block mb-2 text-sm font-medium text-gray-900 ">Content</label>
+                        <label for="content" class="block mb-2 text-sm font-medium "style="color:#00519B;">Content</label>
                         <textarea id="content" rows="3" class="p-2.5 w-full text-sm text-gray-900 rounded-lg border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Write content here..." name="content">{{ old('content') }}</textarea>
                         @error('content')
                         <span class="text-red-800">{{ $message }}</span>
                         @enderror
                     </div>
                     <br>
-                    <label class="text-sm font-medium text-gray-900 " for="user_avatar">Attachments</label>
+                    <label class="text-sm font-medium " style="color:#00519B;"for="user_avatar">Attachments</label>
                     <input class="w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50" aria-describedby="user_avatar_help" id="user_avatar" type="file" name="attachment">
                     <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Send</button>
                 </form>
@@ -118,17 +118,19 @@
     <div class="flex flex-wrap grid-cols-3 gap-4">
             @if (count($previousRequests) > 0)
             @foreach($previousRequests as $request)
+            
         <div class=" bg-white w-60 shadow-md shadow-cyan-500/50   hover:shadow-xl hover:shadow-cyan-500/50 rounded-lg p-4 mb-4">
             <!-- <div class=" inline-block justify-center rounded-md"> -->
-
-                    <h4 class="  font-semibold mb-4 text-blue-900">{{$request->request_title}}</h4><br>
+            <div class="font-semibold text-gray-400 flex justify-end" style="margin-bottom: -25px;">{{$request->date}}</div>
+                    <h4 class="  font-semibold mb-4 "style="color:#00519B;">{{$request->request_title}}</h4><br>
                 <div class="flex justify-center rounded-md ">
                     <div class="block space-y-4 md:flex md:space-y-0 md:space-x-4 rtl:space-x-reverse">
                         @if(auth()->user()->role == 2)
-                        <button data-modal-target="small-modal-{{ $request->id }}" data-modal-toggle="small-modal-{{ $request->id }}" class="block w-full md:w-auto text-white bg-blue-900 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" type="button">Manage Request</button>
+                        <button data-modal-target="small-modal-{{ $request->id }}" data-modal-toggle="small-modal-{{ $request->id }}" class=" w-60 shadow-md shadow-cyan-500/50   hover:shadow-xl hover:shadow-cyan-500/50 block w-full md:w-auto text-white bg-blue-900 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" type="button">Manage Request</button>
                         @endif
                     </div>
                 </div>
+                <br/>
                 <!-- Bottom Right Modal -->
                 <div id="small-modal-{{ $request->id }}" tabindex="-1" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
                     <div class="relative w-full max-w-2xl max-h-full">
@@ -136,7 +138,7 @@
                         <div class="relative bg-white rounded-lg shadow ">
                             <!-- Modal header -->
                             <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
-                                <h3 class="text-xl font-medium text-gray-900">Manage  Request</h3>
+                                <h3 class="text-xl font-medium "style="color:#00519B;">Manage  Request</h3>
                                 <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center" data-modal-hide="small-modal-{{ $request->id }}">
                                     <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
@@ -149,7 +151,7 @@
                                 <form method="post" action="{{ route('requestReply',$request->id) }}" enctype="multipart/form-data" style="width:80%; margin:0 auto;">
                                     @csrf <!-- CSRF token (not needed since it's not a Laravel application) -->
                                     <div>
-                                        <label for="request_status" class="block mb-2 text-sm font-medium text-gray-900 ">Status:</label>
+                                        <label for="request_status" class="block mb-2 text-sm font-medium"style="color:#00519B;">Status:</label>
                                         <div class="select-wrapper">
                                             <select id="request_status" name="request_status" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                                                 <option value="" selected>Select Status...</option>
@@ -160,21 +162,21 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <label for="request_title" class="text-sm text-gray-900 ">Title</label>
+                                        <label for="request_title" class="text-sm"style="color:#00519B;">Title</label>
                                         <input type="text" id="request_title" name="request_title" value="{{$request->request_title}}" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " disabled/>
                                     </div>
                                     <div>
                                         <!-- <input type="hidden" id="request_id" name="request_id" value="{{$request->id}}" /> -->
                                     </div>
                                     <div>
-                                        <label for="content" class="text-sm text-gray-900 text-black">Content</label>
+                                        <label for="content" class="text-sm  text-black"style="color:#00519B;">Content</label>
                                         <textarea id="content" rows="3" class="p-2.5 w-full text-sm text-gray-900 rounded-lg border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Write content here..." name="content">{{ old('content') }}</textarea>
                                         @error('content')
                                         <span class="text-red-800">{{ $message }}</span>
                                         @enderror
                                     </div>
                                     <br>
-                                    <label class="text-sm font-medium text-gray-900 " for="user_avatar">Attachments</label>
+                                    <label class="text-sm font-medium "style="color:#00519B;" for="user_avatar">Attachments</label>
                                     <input class="w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50" aria-describedby="user_avatar_help" id="user_avatar" type="file" name="attachment">
                                     <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Send</button>
                                 </form>
@@ -188,7 +190,6 @@
             @elseif(auth()->user()->role == 2)
                 <div class="text-blue-900 font-semibold">From: {{ $request->user->username }}</div>
             @endif
-                <div class="text-blue-900 font-semibold">Date: {{ $request->date }}</div>
                 <div class="text-blue-900 font-semibold">Status:
                 @if($request->request_status  == 1)
                 <p class="h-2.5 w-2.5 rounded-full bg-green-500 inline-block me-2"></p>New

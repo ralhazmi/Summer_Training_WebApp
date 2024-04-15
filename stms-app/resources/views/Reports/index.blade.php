@@ -30,57 +30,64 @@
             <div class="p-4 md:p-5 space-y-4">
             <form method="post" action="{{ route('Reportstore') }}" enctype="multipart/form-data" style="width:80%; margin:0 auto;">
 
-        @csrf <!-- CSRF token (not needed since it's not a Laravel application) -->
+@csrf
 
-    <div class="flex mb-5">
+<div class="flex mb-5">
+    <div class="w-1/2 ml-auto">
+        <label for="date" class="block mb-2 text-sm font-medium text-blue-800 text-left">Date</label>
+        <input type="date" id="date" name="date" value="" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
+        @error('date')
+        <span class="text-red-800">{{ $message }}</span>
+        @enderror
+    </div>
+</div>
+
+<div class="flex mb-5">
     <div class="w-1/2 mr-2">
-    <label for="report_title" class="block mb-2 text-sm font-medium text-blue-800 ">Title</label>
-    <input type="text" id="report_title" name="report_title" value="" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  " placeholder="Write your report title here..." required />
-    @error('report_title')
-    <span class="text-red-800">{{ $message }}</span>
-    @enderror
+        <label for="report_title" class="block mb-2 text-sm font-medium "style="color:#00519B;">Title</label>
+        <input type="text" id="report_title" name="report_title" value="" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  " placeholder="Write your report title here..." required />
+        @error('report_title')
+        <span class="text-red-800">{{ $message }}</span>
+        @enderror
     </div>
 
     <div class="w-1/2 ml-2">
-    <label for="date" class="block mb-2 text-sm font-medium text-blue-800 ">Date</label>
-    <input type="date" id="date" name="date" value="" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
-    @error('date')
-    <span class="text-red-800">{{ $message }}</span>
-    @enderror
+        <label for="user_id" class="block mb-2 text-sm font-medium "style="color:#00519B;">Student ID</label>
+        <input type="integer" id="user_id" name="user_id" value="" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  " placeholder="Write your id here..." required />
+        @error('user_id')
+        <span class="text-red-800">{{ $message }}</span>
+        @enderror
     </div>
+</div>
 
-    <div class="w-1/2 ml-2">
-    <label for="user_id" class="block mb-2 text-sm font-medium text-blue-800 ">Student ID</label>
-    <input type="integer" id="user_id" name="user_id" value="" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  "placeholder="Write your id here..." required />
-    @error('user_id')
-    <span class="text-red-800">{{ $message }}</span>
-    @enderror
-    </div>
-
-    </div>
-    <br>
-    <label class="block mb-2 text-sm font-medium text-blue-800 " for="user_avatar">Attachments</label>
+<div class="mb-5">
+    <label class="block mb-2 text-sm font-medium "style="color:#00519B;" for="user_avatar">Attachments</label>
     <input class="w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none " aria-describedby="user_avatar_help" id="user_avatar" type="file" name="attachment">
-    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center ">Send</button>
-    </form>
+</div>
+
+<button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center ">Send</button>
+</form>
+
+
+
+
+
             </div>
         </div>
     </div>
 </div>
 
 <div class="mt-8 ">
-    <h2 class="text-lg font-semibold mb-4 text-blue-900">Previous Reports</h2>
+    <h2 class="text-lg font-semibold mb-4 "style="color:#00519B;">Previous Reports</h2>
     <div class="flex flex-wrap grid-cols-3 gap-4">
             @if (count($data) > 0)
             @foreach($data as $report)
         <div class=" bg-white w-60 shadow-md shadow-cyan-500/50   hover:shadow-xl hover:shadow-cyan-500/50 rounded-lg p-4 mb-4">
             <!-- <div class=" inline-block justify-center rounded-md"> -->
+            <div class="text-gray-400 font-semibold flex justify-end mb-5 "style="margin-bottom: -25px;">{{$report->date}}</div>
+                    <h4 class="  font-semibold mb-4 "style="color:#00519B;">{{ $report->report_title }}</h4>
 
-                    <h4 class="  font-semibold mb-4 text-blue-900">{{ $report->report_title }}</h4><br>
-
-
-                <div class="text-blue-900 font-semibold">Date: {{$report->date}}</div>
-                <div class="text-blue-900 font-semibold">Student ID: {{ $report->user_id }}</div>
+                <div class="font-semibold"style="color:#00519B;">Student ID: {{ $report->user_id }}</div>
 <!-- Add more fields as needed -->
 
 <a href="{{route('Reportshow',$report->id)}}" class="font-medium text-blue-800 hover:underline"><button class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white  focus:ring-4 focus:outline-none focus:ring-green-200 ">

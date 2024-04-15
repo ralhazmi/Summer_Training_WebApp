@@ -53,7 +53,7 @@ class RequestController extends Controller
          }
           //notification
         $usersreq=User::where('role','2')->get();
-        $previousRequests = requests::latest()->first();
+        $previousRequests = Requests::latest()->value('id');
         Notification::send($usersreq,new requestnoti($previousRequests));
 
 

@@ -11,11 +11,11 @@
   @foreach(Auth()->User()->unreadNotifications as $notification)
   <div class="divide-y divide-gray-100">
    @if($notification->type =='App\Notifications\announcementnoti')
-    <a href="{{route('detailsannouncement',$notification->data['id'])}}" class="flex px-4 py-3 hover:bg-gray-100 ">
+    <a href="#" class="flex px-4 py-3 hover:bg-gray-100 ">
       @elseif($notification->type =='App\Notifications\reportsnoti')
-    <a href="{{route('Reportshow',$notification->data['id'])}}" class="flex px-4 py-3 hover:bg-gray-100 ">
+    <a href="#" class="flex px-4 py-3 hover:bg-gray-100 ">
       @else
-    <a href="{{route('requestdetails',$notification->data['id'])}}" class="flex px-4 py-3 hover:bg-gray-100 ">
+    <a href="#" class="flex px-4 py-3 hover:bg-gray-100 ">
       @endif
       <div class="w-full ps-3">
           <div class="text-gray-500 text-sm mb-1.5 "><span class="font-semibold text-gray-900 ">{{$notification->data['user']}}</span>: {{$notification->data['title']}}<br/> <h7>{{$notification->created_at}}</h> </div>

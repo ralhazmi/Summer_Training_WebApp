@@ -19,7 +19,6 @@ return new class extends Migration
         $table->timestamps();
         $table->binary('attachment');
         $table->date('date');
-        $table->integer('degree')->nullable(); // Define degree column as an integer
         $table->foreign('user_id')->references('id')->on('users');
         $table->foreign('assign_to')->references('id')->on('users')->where('role', '=', 2);
         });

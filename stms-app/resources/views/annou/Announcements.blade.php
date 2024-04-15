@@ -71,14 +71,35 @@
     </div>
 </div> -->
 <!--end pop up code -->
+<style>
+        .advertisement {
+        margin-bottom: 20px; /* إضافة مسافة بين كل إعلان */
+        }
+    /* تغيير لون الخلفية عند تحويل المؤشر للصف */
+    tr:hover {
+        background-color: #f1f1f1;
+    }
+    .shadow-cyan-800 {
+    --tw-shadow-color: #51c3cd !important;
+}
+/* Add these styles to your existing CSS file or create a new one */
+.pagination a,
+.pagination span {
+
+    color: #00519b;
+    border-color: #00519b;
+    background-color: #fff;
+
+}
+</style>
 
 <div class="flex justify-center ">
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg ">
-    <table class="w-full text-sm text-left rtl:text-right text-blue-900  w-full md:w-auto ">
+    <table class="w-full text-sm text-left rtl:text-right text-blue-900  w-full md:w-auto drop-shadow-lg">
     @if (count($datann) > 0)
+    @foreach($datann->reverse() as $announcement)
         <tbody>
-          @foreach($datann->reverse() as $announcement)
-            <tr class="bg-white border-b border-x-indigo-500 ">
+            <tr class="bg-white border-b border-x-indigo-500  shadow-inner shadow-2xl " style="padding-bottom: 20px">
                 <th scope="row" class="flex items-center px-6 py-4 text-blue-900 whitespace-nowrap ">
                 <svg class="w-6 h-6 text-blue-900" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 19">
     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 12 5.419 3.871A1 1 0 0 0 16 15.057V2.943a1 1 0 0 0-1.581-.814L9 6m0 6V6m0 6H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h7m-5 6h3v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-5Zm15-3a3 3 0 0 1-3 3V6a3 3 0 0 1 3 3Z"/>
@@ -89,16 +110,19 @@
                         <div class="font-normal text-blue-900">{{$announcement->attachment}}</div>
                     </div>
                   </th>
-                  <td class="px-6 py-4">
+                  <td class="px-6 py-4 text-gray-400">
                   {{$announcement->created_at}}
                 </td>
-                <td class="px-6 py-4">
+                <td class="px-6 py-4 text-gray-400">
                 {{ $announcement->user->username }}
                 </td>
                 <td class="px-6 py-4">
-                    <a href="{{route('detailsannouncement',$announcement->id)}}" class="font-medium text-blue-800 hover:underline">View details</a>
-                </td>
-
+                <a href="{{route('detailsannouncement',$announcement->id)}}" class="font-medium text-blue-800 hover:underline"><button class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white  focus:ring-4 focus:outline-none focus:ring-green-200 ">
+<span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white  rounded-md group-hover:bg-opacity-0">
+<i class="fa-solid fa-circle-info " style="color: #00519b;"></i><i class="ml-2">View Details</i>
+</span>
+</button></a>
+</td>
             </tr>
             @endforeach
             @else

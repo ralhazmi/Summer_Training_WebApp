@@ -30,7 +30,8 @@ class StudentsController extends Controller
             ],
             'company'=> 'required',
             'password' => 'required|min:8',
-            'confirmpass' => 'required|same:password'
+            'confirmpass' => 'required|same:password',
+            'attachment'=> 'required',
           ]);
           $data['id']= $request->id;
           $data['username']= $request->username;
@@ -39,6 +40,17 @@ class StudentsController extends Controller
           $data['hours']= $request->hours;
           $data['company']= $request->company;
           $data['password']= Hash::make($request->password);
+          $data['attachment']= $request->attachment;
+
+          if( $attachment){
+            $attachmentname=time().'.'. $attachment->getClientOriginalExtension();
+            $request->attachment->move('attachmentFile',$attachmentname);
+            $datatoinsert->attachment=$attachmentname;
+        }
+        $data->save();
+
+
+       
 
           User::create($data);
 

@@ -127,6 +127,9 @@
             <input type="password" name="confirmpass" id="confirmpass" placeholder="••••••••" style="color:#00519B;" class="bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required />
             </div>
         </div>
+        <label class=" block mb-2 text-sm font-medium "style="color:#00519B;" for="user_avatar">attachment</label>
+         <input class="w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 " aria-describedby="user_avatar_help" id="user_avatar" type="file" name="attachment">
+         
         <!-- <div>
             <label for="password" class="block mb-2 text-sm font-medium " style="color:#00519B;">Password</label>
             <input type="password" name="password" id="password" placeholder="••••••••" style="color:#00519B;" class="bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required />
@@ -157,7 +160,7 @@
 
                             <p> phone:0163016666 <br>
 
-                            email:it-sup@qu.edu.sa </p>
+                            email:Durba.webapp@qmail.com</p>
 
                             <div data-popper-arrow></div>
                         </div>

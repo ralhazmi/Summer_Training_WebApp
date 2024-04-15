@@ -38,7 +38,7 @@ class reportsnoti extends Notification
     public function toDatabase(object $notifiable): array
     {
         return [
-            'id'=>$this->Reports->id ?? 'default_value',
+            //'id'=>(int)$this->Reports->id ,
             'title'=>'Add new report',
             'user'=> auth()->User()->username,
         ];

@@ -169,6 +169,8 @@
                     <input type="password" name="confirmpass" id="confirmpass" placeholder="••••••••" style="color:#00519B;" class="bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required />
                     </div>
                 </div>
+                <label class=" block mb-2 text-sm font-medium "style="color:#00519B;" for="user_avatar">attachment</label>
+         <input class="w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 " aria-describedby="user_avatar_help" id="user_avatar" type="file" name="attachment">
                 <!-- Modal footer -->
                 <div class="flex items-center p-4 md:p-5 space-x-3 rtl:space-x-reverse border-t border-gray-200 rounded-b dark:border-gray-600">
                     <button data-modal-hide="large-modal1" type="submit"  class="text-white bg-blue-900 hover:bg-blue-800  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">Add student</button>
@@ -201,6 +203,9 @@
                 </th>
                 <th scope="col" class="px-4 py-3 bg-sky-500">
                     Actions
+                </th>
+                <th scope="col" class="px-4 py-3 ">
+                Attachment
                 </th>
 
             </tr>
@@ -317,6 +322,18 @@
                                 </button></a>
                             @endif
                 </div>
+                </td>
+                <td class="px-4 py-4">
+                @if($student->attachment)
+        <div class="flex justify-left w-96  font-semibold items-center"style="color:#00519B;">
+    <button onclick="window.location='{{route('download',$student->attachment)}}'" class="bg-blue-900 hover:bg-blue-700 text-white font-bold text-sm py-2 px-4 rounded flex items-center">
+        Download File
+        <svg class="w-5 h-5 ml-1 text-white hover:underline" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 18">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M8 1v11m0 0 4-4m-4 4L4 8m11 4v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3"/>
+        </svg>
+    </button>
+</div>
+@endif
                 </td>
             </tr>
             @endforeach

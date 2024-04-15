@@ -14,7 +14,6 @@ class Reports extends Model
         'report_title',
         'date',
         'attachment',
-        'degree',
-        
+
     ];
 }

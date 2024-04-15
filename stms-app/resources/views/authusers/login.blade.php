@@ -121,7 +121,7 @@
 
                             <p> phone:0163016666 <br>
 
-                            email:it-sup@qu.edu.sa </p>
+                            email:Durba.webapp@gmail.com </p>
 
                             <div data-popper-arrow></div>
                         </div>
