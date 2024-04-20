@@ -73,10 +73,22 @@
             </div>
             <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                 <dt class="text-sm font-medium font-bold text-gray-500">
-                Attachment
+                Academic Record
                 </dt>
                 <dd class="mt-1 text-sm text-blue-900 sm:mt-0 sm:col-span-2">
-                {{$user->attachment}}
+            @if($user->role == 1)
+                @if($user->attachment)
+                    <a href="{{route('Acadimicdownload',$user->attachment)}}">
+                        <div style="color:#00519B;">Download
+                        <i class="ml-1 fa-solid fa-download fa-lg" style="color: #00519b;"></i>
+                        </div>
+                    </a>
+                    @else
+                    <div class="mt-1 text-sm text-blue-900 sm:mt-0 sm:col-span-2">
+                     None
+                    </div>
+                    @endif
+            @endif
                 </dd>
             </div>
             @endif

@@ -86,33 +86,30 @@
 
 
 <div class="flex justify-end rounded-md ">
-<div class="w-full block space-y-4 md:flex md:space-y-0 md:space-x-4 rtl:space-x-reverse">
-
-
-<form class="w-full max-w-lg me-auto shadow-lg" method="get" action="{{route('search')}}">
-    <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only ">Search</label>
-    <div class="relative">
-        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-            <svg class="w-4 h-4 text-blue-900 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-            </svg>
-        </div>
-        <input type="search" name="search" value="{{isset($search) ? $search:''}}" id="default-search" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-900 focus:border-blue-900  " placeholder="Search By Training Entity, Name..." />
-        <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-blue-900 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 ">Search</button>
+    <div class="w-full block space-y-4 md:flex md:space-y-0 md:space-x-4 rtl:space-x-reverse">
+        <form class="w-full max-w-lg me-auto shadow-lg" method="get" action="{{route('search')}}">
+            <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only ">Search</label>
+            <div class="relative">
+                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                    <svg class="w-4 h-4 text-blue-900 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                    </svg>
+                </div>
+                <input type="search" name="search" value="{{isset($search) ? $search:''}}" id="default-search" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-900 focus:border-blue-900  " placeholder="Search By Training Entity, Name..." />
+                <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-blue-900 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 ">Search</button>
+            </div>
+        </form>
+        <!-- Modal toggle -->
+        <button  style="margin-top:2px !important ;margin-bottom:2px !important;" data-modal-target="large-modal1" data-modal-toggle="large-modal1" class="transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 block shadow-lg w-full md:w-auto mt-3 mb-5 text-white bg-blue-900 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" type="button">+ Add Student
+        </button>
     </div>
-</form>
-
-
-
-    <!-- Modal toggle -->
-    <button  style="margin-top:2px !important ;margin-bottom:2px !important;" data-modal-target="large-modal1" data-modal-toggle="large-modal1" class="transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 block shadow-lg w-full md:w-auto mt-3 mb-5 text-white bg-blue-900 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" type="button">+ Add Student
-    </button>
 </div>
-</div>
+
+
 <div id="large-modal1" tabindex="-1" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
     <div class="relative w-full max-w-4xl max-h-full">
-        <!-- Modal content -->
-        <div class="relative bg-white rounded-lg shadow">
+         <!-- Modal content -->
+         <div class="relative bg-white rounded-lg shadow">
          <!-- Modal header -->
            <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t ">
                 <h3 class="text-xl font-medium  "style="color:#00519B;">
@@ -126,7 +123,7 @@
                 </button>
             </div>
             <!-- Modal body -->
-            <form action="{{route('add.students')}}" method="POST" class="space-y-6 " style="width:80%; margin:0 auto;">
+            <form action="{{route('add.students')}}" method="POST" enctype="multipart/form-data" class="space-y-6 " style="width:80%; margin:0 auto;">
                 @csrf
                 <div class="flex mb-4">
                 <div class="w-1/2 mr-2 ">
@@ -169,8 +166,11 @@
                     <input type="password" name="confirmpass" id="confirmpass" placeholder="••••••••" style="color:#00519B;" class="bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required />
                     </div>
                 </div>
-                <label class=" block mb-2 text-sm font-medium "style="color:#00519B;" for="user_avatar">attachment</label>
-         <input class="w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 " aria-describedby="user_avatar_help" id="user_avatar" type="file" name="attachment">
+                <div>
+                        <label class="block mb-2 text-sm font-medium " style="color:#00519B;" for="user_attachment">Academic Record</label>
+                        <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"  id="user_attachment" type="file" name="attachment" accept=".pdf">
+                        <p class="mt-1 text-sm text-gray-400 " id="file_input_help">PDF Only</p>
+                </div>
                 <!-- Modal footer -->
                 <div class="flex items-center p-4 md:p-5 space-x-3 rtl:space-x-reverse border-t border-gray-200 rounded-b dark:border-gray-600">
                     <button data-modal-hide="large-modal1" type="submit"  class="text-white bg-blue-900 hover:bg-blue-800  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">Add student</button>
@@ -179,6 +179,7 @@
          </div>
     </div>
 </div>
+
 <div class="relative mt-4 overflow-x-auto shadow-lg sm:rounded-lg">
     <table class="w-full text-sm text-center rtl:text-right text-blue-900 ">
         <thead class="text-xs text-blue-900 uppercase ">
@@ -205,7 +206,7 @@
                     Actions
                 </th>
                 <th scope="col" class="px-4 py-3 ">
-                Attachment
+                Academic Record
                 </th>
 
             </tr>
@@ -247,7 +248,7 @@
                     <div class="flex justify-end rounded-md ">
                         <div class="block space-y-4 md:flex md:space-y-0 md:space-x-4 rtl:space-x-reverse">
                             <!-- Modal toggle -->
-                            <button data-modal-target="large-modal-{{ $student->id }}" data-modal-toggle="large-modal-{{ $student->id }}" class="px-4 py-2 text-sm font-medium text-blue-900 bg-sky-500  border border-blue-900 rounded-s-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 " type="button">Edit</button>
+                            <button data-modal-target="large-modal-{{ $student->id }}" data-modal-toggle="large-modal-{{ $student->id }}" class="px-4 py-2 text-sm font-medium text-blue-900 bg-sky-500  border border-blue-900 rounded-s-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 " type="button" title="Edit"><i class="fa-solid fa-user-pen fa-lg"></i></button>
                         </div>
                     </div>
                     <div id="large-modal-{{ $student->id }}" tabindex="-1" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -312,36 +313,42 @@
 
                             @if($student->activation == 1)
                             <a href="{{ route('update.Activation', ['id' => $student->id, 'status' => 2]) }}">
-                                <button type="button" class="activation-button px-4 py-2 text-sm font-medium text-blue-900 bg-sky-500  border border-blue-900 rounded-e-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 ">
-                                    Deactivate
+                                <button type="button" title="Deactivate" class="activation-button px-4 py-2 text-sm font-medium text-blue-900 bg-sky-500  border border-blue-900 rounded-e-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 ">
+                                <i class="fa-solid fa-user-xmark fa-lg" style="color: #fa0000;"></i>
                                 </button></a>
                             @else
                             <a href="{{ route('update.Activation', ['id' => $student->id, 'status' => 1]) }}">
-                                <button type="button" class="activation-button px-4 py-2 text-sm font-medium text-blue-900 bg-sky-500 border border-blue-900 rounded-e-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 ">
-                                    Activate
+                                <button type="button" title="Activate" class="activation-button px-4 py-2 text-sm font-medium text-blue-900 bg-sky-500 border border-blue-900 rounded-e-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 ">
+                                <i class="fa-solid fa-user-check fa-lg" style="color: #27d352;"></i>
                                 </button></a>
                             @endif
                 </div>
                 </td>
                 <td class="px-4 py-4">
-                @if($student->attachment)
-        <div class="flex justify-left w-96  font-semibold items-center"style="color:#00519B;">
-    <button onclick="window.location='{{route('download',$student->attachment)}}'" class="bg-blue-900 hover:bg-blue-700 text-white font-bold text-sm py-2 px-4 rounded flex items-center">
-        Download File
-        <svg class="w-5 h-5 ml-1 text-white hover:underline" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 18">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M8 1v11m0 0 4-4m-4 4L4 8m11 4v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3"/>
-        </svg>
-    </button>
-</div>
-@endif
+                    @if($student->attachment)
+                    <a href="{{route('Acadimicdownload',$student->attachment)}}">
+                        <div style="color:#00519B;">Download
+                        <i class="ml-1 fa-solid fa-download fa-lg" style="color: #00519b;"></i>
+                        </div>
+                    </a>
+                    <!-- <div class="flex items-center">
+                        <button onclick="window.location='/downloadrecord/{{$student->attachment}}'" class="bg-blue-900 hover:bg-blue-700 text-white font-bold text-sm py-2 px-4 rounded flex items-center">
+
+                        </button>
+                    </div> -->
+                    @else
+                    <div class="flex  justify-center items-center"style="color:#00519B;">
+                     None
+                    </div>
+                    @endif
                 </td>
             </tr>
-            @endforeach
-        </tbody>
+    @endforeach
+    </tbody>
     </table>
     <span class="pagination" >
-    {{$data->links()}}
-</span>
+        {{$data->links()}}
+    </span>
 </div>
 @endsection
 

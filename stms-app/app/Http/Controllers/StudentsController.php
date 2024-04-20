@@ -31,8 +31,9 @@ class StudentsController extends Controller
             'company'=> 'required',
             'password' => 'required|min:8',
             'confirmpass' => 'required|same:password',
-            'attachment'=> 'required',
+            'attachment' => 'file',
           ]);
+          $data= new User();
           $data['id']= $request->id;
           $data['username']= $request->username;
           $data['email']= $request->email;
@@ -40,19 +41,15 @@ class StudentsController extends Controller
           $data['hours']= $request->hours;
           $data['company']= $request->company;
           $data['password']= Hash::make($request->password);
-          $data['attachment']= $request->attachment;
-
-          if( $attachment){
-            $attachmentname=time().'.'. $attachment->getClientOriginalExtension();
-            $request->attachment->move('attachmentFile',$attachmentname);
-            $datatoinsert->attachment=$attachmentname;
+          if ($request->hasFile('attachment')) {
+            $attachment = $request->file('attachment');
+            $attachmentName = time() . '.' . $attachment->getClientOriginalExtension();
+            $attachment->move('attachmentFile', $attachmentName);
+            $data->attachment = $attachmentName;
         }
+
+
         $data->save();
-
-
-       
-
-          User::create($data);
 
           return redirect(route('show.students'))->with("Success","student Added Succesffully");
 
@@ -103,10 +100,15 @@ class StudentsController extends Controller
                 ->orWhere('major','like','%'.$search.'%');
             });
         }
-        $data = $query->where('role', 1)->paginate(4);
+        $data = $query->where('role', 1)->paginate(7);
 
         return view('manageStudents.manageStudents',compact('data','search'),['user'=> auth()->user()]);
 
+    }
+    public function download($attachment)
+    {
+
+        return response()->download(public_path('attachmentFile/' .$attachment));
     }
 
 }

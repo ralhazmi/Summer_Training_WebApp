@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('role')->nullable(false)->default(1);
             $table->integer('activation')->nullable(false)->default(1);
             $table->string('company')->nullable(false)->default("Unkown");
+            $table->binary('attachment')->nullable();
             $table->rememberToken('token');
             $table->timestamps();
         });

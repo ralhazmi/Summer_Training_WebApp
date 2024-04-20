@@ -43,13 +43,14 @@ class AuthController extends Controller
     return redirect()->back()->with("error","invalid credentials");
   }
 
-  function registrationPost(Request $request){
-    $request->validate([
-        'id'=>'required|min:8|max:10|unique:users',
-        'username'=> 'required',
-        'email'=> 'required|email|unique:users',
-        'major'=> 'required',
-        'hours'=> [
+  public function registrationPost(Request $request)
+{
+    $validatedData = $request->validate([
+        'id' => 'required|min:8|max:10|unique:users',
+        'username' => 'required',
+        'email' => 'required|email|unique:users',
+        'major' => 'required',
+        'hours' => [
             'required',
             function ($attribute, $value, $fail) {
                 if ($value < 120) {
@@ -58,24 +59,37 @@ class AuthController extends Controller
             },
         ],
         'password' => 'required|min:8',
-        'confirmpass' => 'required|same:password'
-      ]);
-      $data['id']= $request->id;
-      $data['username']= $request->username;
-      $data['email']= $request->email;
-      $data['major']= $request->major;
-      $data['hours']= $request->hours;
-      $data['password']= Hash::make($request->password);
+        'confirmpass' => 'required|same:password',
+        'attachment' => 'nullable|file', // Ensure 'attachment' is a file
+    ]);
 
-      $user = User::create($data);
+    // Create a new User instance
+    $data = new User();
+    $data->id = $validatedData['id'];
+    $data->username = $validatedData['username'];
+    $data->email = $validatedData['email'];
+    $data->major = $validatedData['major'];
+    $data->hours = $validatedData['hours'];
+    $data->password = Hash::make($validatedData['password']);
 
-      if (!$user){
-        return redirect('/register')->with("error","Register faild,try again");
-      }
-      return redirect('/')->with("Success","Register Succesffully");
+    // Handle file attachment
+    if ($request->hasFile('attachment')) {
+        $attachment = $request->file('attachment');
+        $attachmentName = time() . '.' . $attachment->getClientOriginalExtension();
+        $attachment->move('attachmentFile', $attachmentName);
+        $data->attachment = $attachmentName;
+    }
+    // Save the user data to the database
+    $userSaved = $data->save();
 
 
+    if (!$userSaved) {
+        return redirect('/register')->with("error", "Registration failed. Please try again.");
+    }
+
+    return redirect('/')->with("Success", "Registration successful!");
 }
+
 function logout(){
     Session::flush();
     Auth::logout();
