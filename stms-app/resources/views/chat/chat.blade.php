@@ -2,19 +2,18 @@
 @section('title','Durba | Chat')
 @section('body')
 <!-- component -->
-<div class="flex justify-end rounded-md ">
-<a href="{{route('getUsers')}}" class="inline-flex items-center text-lg text-blue-900 hover:underline">
-<svg class="w-96 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-</svg>
-</a>
-</div>
+
 <div class="flex-1 p:2 sm:p-6 justify-between flex flex-col " style="height: 86vh;">
    <div class="flex sm:items-center justify-between py-3 border-b-2 border-gray-200">
       <div class="relative flex items-center space-x-4">
+        <div class="flex justify-start rounded-md ">
+            <a href="{{route('getUsers')}}" class="inline-flex items-center text-lg text-blue-900 ">
+            <i class="fa-solid fa-chevron-left fa-lg"></i>
+            </a>
+        </div>
          <div class="relative">
             <i class="fa-regular fa-user fa-xl overflow-hidden w-8 h-8  mr-2 flex justify-center items-center" style="color: #00519b;"></i>
-                     </div>
+        </div>
          <div class="flex flex-col leading-tight">
             <div class="text-xl mt-1 flex items-center">
                <span class="text-gray-700 mr-3">{{$receiver->username}} </span>
@@ -39,7 +38,7 @@
             <div class="chat-message">
                 <div class="flex items-end">
                     <div class="flex flex-col space-y-2 text-s max-w-xs mx-2 order-2 items-start">
-                    <div><span class="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 text-gray-600">{{ $message->message }}</span></div>
+                    <div><span class="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-200 text-gray-600">{{ $message->message }}</span></div>
                     </div>
                     <i class="fa-regular fa-user fa-xl overflow-hidden w-8 h-8 mr-2 flex justify-center items-center" style="color: #00519b;"></i>         </div>
             </div>
@@ -90,6 +89,7 @@
 </script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+    // Function to mark conversation as read
     $("#send").click(function() {
         $.post("/chat/{{$receiver->id}}", {
             message: $("#message").val()
@@ -106,9 +106,16 @@
 
             // Append the sender's message to the chat_area
             $("#chat_area").append(senderMessage);
+            $.post(`/chat/{{$receiver->id}}/mark-as-read`, function(response) {
+            // Optional: Handle response if needed
+            console.log('Conversation marked as read');});
 
             // Clear the message input after sending
             $("#message").val('');
+
+            // Scroll to the bottom of chat_area
+            var chatArea = document.getElementById("chat_area");
+            chatArea.scrollTop = chatArea.scrollHeight;
         });
     });
     Pusher.logToConsole = true;
@@ -120,12 +127,24 @@
     var channel = pusher.subscribe('chat{{$user->id}}');
     channel.bind('chatMessage', function(data) {
     // Construct the HTML for the sender's message
-    let receiverMessage ='<div class="flex mt-2 items-center justify-start"><i class="fa-regular fa-user fa-xl overflow-hidden w-8 h-8 mr-2 flex justify-center items-center" style="color: #00519b;"></i><div class="bg-gray-100 rounded-lg p-2 shadow mb-2 max-w-sm">'+
+    let receiverMessage ='<div class="flex mt-2 items-center justify-start"><i class="fa-regular fa-user fa-xl overflow-hidden w-8 h-8 mr-2 flex justify-center items-center" style="color: #00519b;"></i><div class="bg-gray-200 rounded-lg p-2 shadow mb-2 max-w-sm">'+
             data.message+
             '</div></div>'
 
             // Append the sender's message to the chat_area
             $("#chat_area").append(receiverMessage);
+            // AJAX request to mark conversation as read
+
+            // Scroll to the bottom of chat_area
+            var chatArea = document.getElementById("chat_area");
+            chatArea.scrollTop = chatArea.scrollHeight;
+    });
+
+    // Initial scroll to bottom when page loads
+    $(document).ready(function() {
+        // Scroll to the bottom of chat_area
+        var chatArea = document.getElementById("chat_area");
+            chatArea.scrollTop = chatArea.scrollHeight;
     });
 </script>
 @endsection

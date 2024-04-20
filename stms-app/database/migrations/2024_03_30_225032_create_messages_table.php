@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('sender'); // Assuming 'id' in 'users' table is unsigned integer
             $table->unsignedBigInteger('receiver');
             $table->text('message')->nullable(false);
+            $table->boolean('is_read')->default(false);
             $table->timestamps();
 
             // Define foreign key constraints

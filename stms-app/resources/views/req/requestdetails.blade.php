@@ -4,16 +4,16 @@
 
 
 <div class="flex justify-end rounded-md ">
-<a href="{{route('indexrequest')}}" class="inline-flex items-center text-lg text-blue-900 hover:underline">
-<svg class="w-96 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+<a href="{{route('indexrequest')}}" class="inline-flex items-end text-lg text-blue-900 hover:underline">
+<svg class="h-3.5 ms-2 mb-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
 </svg>
 </a>
 </div>
 <div class="flex justify-center">
-  <div class="max-w-sm pb-60 bg-white border border-gray-200 rounded-lg shadow">
+  <div class="max-w-sm pb-60 bg-white border border-gray-200 rounded-lg shadow"style="width: 400px;">
     <div class="p-6">
-    <div class="font-semibold text-gray-400 flex justify-end" style="margin-bottom: -25px;">{{$request->date}}</div>
+    <div class="font-semibold text-gray-400 flex ml-40 justify-end" style="margin-bottom: -25px;">{{$request->date}}</div>
       <h1 class="text-2xl font-serif mb-5 "style="color:#00519B;">{{$request->request_title}}</h1>
       <div class="font-normal">
       @if(auth()->user()->role == 1)
@@ -35,7 +35,7 @@
 
         @if($request->attachment)
         <div class="flex justify-left w-96  font-semibold items-center"style="color:#00519B;">
-    <button onclick="window.location='{{route('download',$request->attachment)}}'" class="bg-blue-900 hover:bg-blue-700 text-white font-bold text-sm py-2 px-4 rounded flex items-center">
+    <button onclick="window.location='{{route('requestdownload',$request->attachment)}}'" class="bg-blue-900 hover:bg-blue-700 text-white font-bold text-sm py-2 px-4 rounded flex items-center">
         Download File
         <svg class="w-5 h-5 ml-1 text-white hover:underline" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 18">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M8 1v11m0 0 4-4m-4 4L4 8m11 4v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3"/>
@@ -44,7 +44,9 @@
 </div>
        <br><hr><br>
         @endif
-
+        <div class="mt-4 flex items-end">
+            <div class="hidden sm:flex w-full bg-gray-200 h-0.5"></div>
+        </div>
         <h1 class="text-2xl font-serif mb-5"style="color:#00519B;">Reply:</h1>
 
         @if ($replies->isEmpty())

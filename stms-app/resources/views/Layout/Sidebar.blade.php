@@ -119,26 +119,27 @@
          </li>
          @if ($user->role == 2)
          <li>
-         <a href="{{route('show.students')}}" class="flex items-center p-2 text-blue-900 rounded-lg  hover:bg-gray-100  group">
+         <a href="{{route('show.students')}}"  class="flex items-center p-2 text-blue-900 rounded-lg  hover:bg-gray-100  group">
                <i class="fa fa-solid fa-people-roof flex-shrink-0 w-5 h-5 text-blue-900 transition duration-75  group-hover:text-blue-900 " >
                </i>
                <span class="flex-1 ms-3 whitespace-nowrap">Manage students</span>
             </a>
          </li>
          <li>
-            <a href="{{route('getUsers')}}" class="flex items-center p-2 text-blue-900 rounded-lg  hover:bg-gray-100  group">
+            <a href="{{route('getUsers')}}" id="contactButton" class="flex items-center p-2 text-blue-900 rounded-lg  hover:bg-gray-100  group">
                <i class=" fa fa-solid fa-id-badge flex-shrink-0 w-5 h-5 text-blue-900 transition duration-75  group-hover:text-blue-900 ">
                </i>
-               <span class="flex-1 ms-3 whitespace-nowrap">Contact with students</span>
+               <span class="flex-1 ms-3 whitespace-nowrap">Contact with students <i id="unreadIndicator" class="w-1 h-4 px-2 py-1 text-xs font-bold bg-red-700 text-white rounded-full hidden"></i></span>
             </a>
          </li>
          @endif
          @if ($user->role == 1)
          <li>
-            <a href="{{route('getUsers')}}" class="flex items-center p-2 text-blue-900 rounded-lg  hover:bg-gray-100  group">
+            <a href="{{route('getUsers')}}" id="contactButton" class="flex items-center p-2 text-blue-900 rounded-lg  hover:bg-gray-100  group">
                <i class="fa fa-solid fa-id-card flex-shrink-0 w-5 h-5 text-blue-900 transition duration-75  group-hover:text-blue-900 " >
                </i>
-               <span class="flex-1 ms-3 whitespace-nowrap">Contact with supervisor </span>
+               <span class="flex-1 ms-3 whitespace-nowrap">Contact with supervisors<i id="unreadIndicator" class="w-1 h-4 px-2 py-1 text-xs font-bold bg-red-700 text-white rounded-full hidden"></i> </span>
+
             </a>
          </li>
          @endif
@@ -156,110 +157,46 @@
 <div class="p-4 sm:ml-64">
   <div class="p-4  rounded-lg  mt-14">
     @yield('body')
-      <!-- <div class="grid grid-cols-3 gap-4 mb-4">
-         <div class="flex items-center justify-center h-24 rounded bg-gray-50 ">
-            <p class="text-2xl text-gray-400 ">
-               <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-               </svg>
-            </p>
-         </div>
-         <div class="flex items-center justify-center h-24 rounded bg-gray-50 ">
-            <p class="text-2xl text-gray-400 ">
-               <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-               </svg>
-            </p>
-         </div>
-         <div class="flex items-center justify-center h-24 rounded bg-gray-50 ">
-            <p class="text-2xl text-gray-400 ">
-               <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-               </svg>
-            </p>
-         </div>
-      </div> -->
-      <!-- <div class="flex items-center justify-center h-48 mb-4 rounded bg-gray-50 ">
-         <p class="text-2xl text-gray-400 ">
-            <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-            </svg>
-         </p>
-      </div>
-      <div class="grid grid-cols-2 gap-4 mb-4">
-         <div class="flex items-center justify-center rounded bg-gray-50 h-28">
-            <p class="text-2xl text-gray-400 ">
-               <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-               </svg>
-            </p>
-         </div>
-         <div class="flex items-center justify-center rounded bg-gray-50 h-28 ">
-            <p class="text-2xl text-gray-400 ">
-               <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-               </svg>
-            </p>
-         </div>
-         <div class="flex items-center justify-center rounded bg-gray-50 h-28 ">
-            <p class="text-2xl text-gray-400">
-               <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-               </svg>
-            </p>
-         </div>
-         <div class="flex items-center justify-center rounded bg-gray-50 h-28 ">
-            <p class="text-2xl text-gray-400 ">
-               <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-               </svg>
-            </p>
-         </div>
-      </div>
-      <div class="flex items-center justify-center h-48 mb-4 rounded bg-gray-50">
-         <p class="text-2xl text-gray-400 ">
-            <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-            </svg>
-         </p>
-      </div>
-      <div class="grid grid-cols-2 gap-4">
-         <div class="flex items-center justify-center rounded bg-gray-50 h-28 ">
-            <p class="text-2xl text-gray-400 ">
-               <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-               </svg>
-            </p>
-         </div>
-         <div class="flex items-center justify-center rounded bg-gray-50 h-28 ">
-            <p class="text-2xl text-gray-400 ">
-               <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-               </svg>
-            </p>
-         </div>
-         <div class="flex items-center justify-center rounded bg-gray-50 h-28">
-            <p class="text-2xl text-gray-400 ">
-               <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-               </svg>
-            </p>
-         </div>
-         <div class="flex items-center justify-center rounded bg-gray-50 h-28 ">
-            <p class="text-2xl text-gray-400 ">
-               <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-               </svg>
-            </p>
-         </div>
-      </div> -->
+
    </div>
 </div>
 
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+<script>
+    // Function to periodically check for unread messages
+        $.ajax({
+            url: '/unread-messages-count',
+            type: 'GET',
+            success: function(response) {
+                var unreadCount = response.unread_count;
 
+                // Show or hide the message indicator based on unread count
+                var indicator = document.getElementById('unreadIndicator');
+                if (indicator) {
+                    if (unreadCount > 0) {
+                        indicator.style.display = 'inline-block';
+                    } else {
+                        indicator.style.display = 'none';
+                    }
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Error fetching unread messages:', error);
+            }
+        });
+    // Check for unread messages on page load and every 30 seconds (30000 milliseconds)
+    // $(document).load(function() {
+    //     checkUnreadMessages(); // Initial check
+    // });
 
+    // Function to handle clicking the contact button
+        $('#contactButton').on('click', function(e) {
+            e.preventDefault();
+            // Redirect to the contact page (or perform desired action)
+            window.location.href = $(this).attr('href');
+        });
+</script>
 
 
 </html>

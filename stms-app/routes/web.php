@@ -45,11 +45,12 @@ Route::group(['middleware'=>'auth'], function (){
     Route::post('/manage_students/add', [StudentsController::class,'add'])->name('add.students');
     Route::put('/manage_students/{student}/update', [StudentsController::class,'updatestuedent'])->name('update.students');
     Route::any('/update-activation/{id}/{status}',  [StudentsController::class,'updateActivation'])->name('update.Activation');
+    Route::get('/downloadrecord/{attachment}', [StudentsController::class, 'download'])->name("Acadimicdownload");
     Route::get('/search',  [StudentsController::class,'search'])->name('search');
 
     Route::get('/req.RQ', [RequestController::class, 'index'])->name("indexrequest");
     Route::post('/store-request', [RequestController::class, 'store'])->name("storerequest");
-    Route::get('/download-request/{attachment}',[RequestController::class,'download'])->name("download");
+    Route::get('/download-request/{attachment}',[RequestController::class,'download'])->name("requestdownload");
     Route::get('/req.requestdetails/{id}',[RequestController::class,'requestdetails'])->name("requestdetails");
     Route::post('/requestReply/{request_id}',[ReplyController::class,'store'])->name("requestReply");
     Route::get('/requestsFilter', [RequestController::class, 'requestsFilter'])->name('requestsFilter');
@@ -69,7 +70,7 @@ Route::group(['middleware'=>'auth'], function (){
     Route::get('/Reports.index',[ReportsController::class,'index'])->name("Reportsindex");
     Route::get('/Reports.show/{id}',[ReportsController::class,'show'])->name("Reportshow");
     Route::post('/StudentReports/store',[ReportsController::class,'store'])->name("Reportstore");
-    Route::get('/download/{attachment}',[ReportsController::class,'download'])->name("download");
+    Route::get('/download/{attachment}',[ReportsController::class,'download'])->name("Reportsdownload");
     Route::post('/reports/{id}/give-degree', [ReportsController::class, 'giveDegree'])->name('reports.give-degree');
 
     Route::get('/MarkAsRead_all',[ReportsController::class,'MarkAsRead_all'])->name('MarkAsRead_all');
@@ -77,6 +78,8 @@ Route::group(['middleware'=>'auth'], function (){
     Route::get('/Users',[MessagesController::class,'getUsers'])->name('getUsers');
     Route::get('/chat/{user_id}',[MessagesController::class,'chatForm'])->name('chatForm');
     Route::post('/chat/{user_id}',[MessagesController::class,'sendMessage'])->name('sendMessage');
+    Route::post('/chat/{user_id}/mark-as-read', 'MessagesController@markAsRead')->name('markAsRead');
+    Route::get('/unread-messages-count', [MessagesController::class, 'unreadMessagesCount'])->name('unreadMessagesCount');
 });
 
 

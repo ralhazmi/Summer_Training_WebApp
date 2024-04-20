@@ -55,24 +55,24 @@
 <!--show recommendation-->
 <p class="text-lg font-semibold mb-4  "style="color:#00519B;">Recommendations of Summer Training</p>
 @if (count($Training) > 0)
-<div class="flex flex-wrap">
-    <div id="trainingCards" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="flex flex-wrap justify-center w-full">
+    <div id="trainingCards" class="grid grid-cols-1 md:grid-cols-2 gap-2">
         @foreach($Training as $index => $Training)
         <div class="p-2 training-card aspect-w-1 aspect-h-1">
             <div class="bg-white shadow rounded-lg p-5">
                 <div class="flex items-center justify-between w-full">
-                    <address class="w-full relative bg-gray-50 p-4 rounded-lg border border-gray-200 not-italic grid grid-cols-2">
+                    <address class="w-full relative bg-gray-50 p-2 rounded-lg border border-gray-200 not-italic overflow-hidden grid grid-cols-2">
                         <div class="space-y-2 text-blue-900 leading-loose hidden sm:block">
-                            Name of company <br />
-                            Email of company <br />
+                            Name  <br />
+                            Email <br />
                             Phone Number <br/>
-                            Website of company
+                             Website
                         </div>
                         <div id="contact-details-{{$index}}" class="space-y-2 text-blue-900 font-medium leading-loose">
                             {{$Training->company_name}} <br />
                             {{$Training->address}}<br />
                             {{$Training->company_number}}<br/>
-                            <a href="{{$Training->company_website}}" class="font-medium text-blue-700 hover:underline"> {{ Str::limit($Training->company_website, 15) }}</a>
+                            <a href="{{$Training->company_website}}" class="font-medium ml-1 text-blue-700 hover:underline"> {{ Str::limit($Training->company_website, 15) }}</a>
                         </div>
                     </address>
                 </div>
@@ -90,12 +90,12 @@
 <style>
     .training-card {
         /* تعديل المسافة بين الكروت */
-        margin-bottom: 1rem;
+        margin-bottom: 0.25rem;
     }
     @media (min-width: 768px) {
         /* تعديل المسافة بين الكروت في الصفحات الكبيرة */
         .training-card {
-            margin-bottom: 1.5rem;
+            margin-bottom: 0.25rem;
         }
     }
 </style>
@@ -137,7 +137,7 @@
 @else
 <p class="font-normal text-blue-800 text-blue-500"> There are currently no Recommendations loaded!.</p>
 @endif
- 
+
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {

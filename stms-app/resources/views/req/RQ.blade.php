@@ -3,6 +3,26 @@
 @section('title', 'Durba | Requests')
 
 @section('body')
+<style>
+/* Add these styles to your existing CSS file or create a new one */
+.pagination a,
+.pagination span {
+
+    color: #00519b;
+    border-color: #00519b;
+    background-color: #fff;
+
+}
+input[type=file]::file-selector-button {
+
+background-color: #00519B ;
+
+}
+input[type=file]::file-selector-button:hover {
+background-color: #00519B;
+}
+
+</style>
 
 <!--pop up code -->
 
@@ -106,7 +126,7 @@
                     <br>
                     <label class="text-sm font-medium " style="color:#00519B;"for="user_avatar">Attachments</label>
                     <input class="w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50" aria-describedby="user_avatar_help" id="user_avatar" type="file" name="attachment">
-                    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Send</button>
+                    <button type="submit" class="mt-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Send</button>
                 </form>
             </div>
         </div>
@@ -118,7 +138,7 @@
     <div class="flex flex-wrap grid-cols-3 gap-4">
             @if (count($previousRequests) > 0)
             @foreach($previousRequests as $request)
-            
+
         <div class=" bg-white w-60 shadow-md shadow-cyan-500/50   hover:shadow-xl hover:shadow-cyan-500/50 rounded-lg p-4 mb-4">
             <!-- <div class=" inline-block justify-center rounded-md"> -->
             <div class="font-semibold text-gray-400 flex justify-end" style="margin-bottom: -25px;">{{$request->date}}</div>
@@ -176,8 +196,11 @@
                                         @enderror
                                     </div>
                                     <br>
-                                    <label class="text-sm font-medium "style="color:#00519B;" for="user_avatar">Attachments</label>
-                                    <input class="w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50" aria-describedby="user_avatar_help" id="user_avatar" type="file" name="attachment">
+                                    <div>
+                                        <label class="block mb-2 text-sm font-medium " style="color:#00519B;" for="attachment">Attachment</label>
+                                        <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"  id="attachment" type="file" name="attachment" >
+
+                                    </div>
                                     <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Send</button>
                                 </form>
                             </div>
@@ -203,7 +226,7 @@
 </div>
 <!-- Add more fields as needed -->
 
-<a href="{{route('requestdetails',$request->id)}}" class="font-medium text-blue-800 hover:underline"><button class="mt-1 relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white  focus:ring-4 focus:outline-none focus:ring-green-200 ">
+<a href="{{route('requestdetails',$request->id)}}" class="font-medium text-blue-800 hover:underline"><button class="mt-1 border border-blue-900 relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group hover:bg-blue-900   hover:text-white  focus:ring-4 focus:outline-none focus:ring-cyan-600">
 <span class="relative px-5 py-2.5  transition-all ease-in duration-75 bg-white  rounded-md group-hover:bg-opacity-0">
 <i class="fa-solid fa-circle-info " style="color: #00519b;"></i><i class="ml-2">View Details</i>
 </span>
@@ -216,7 +239,7 @@
 @endif
 </div>
 </div>
-<span>
+<span class="pagination">
     {{$previousRequests->links()}}
 </span>
 

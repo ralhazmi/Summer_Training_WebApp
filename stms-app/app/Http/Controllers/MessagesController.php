@@ -52,21 +52,30 @@ class MessagesController extends Controller
             // Format the created_at date
             $formattedDate = $lastMessage ? $lastMessage->created_at->format('d/m/Y H:i') : null;
 
-            // Determine which array to populate based on user type
-            if ($userType === 'student') {
-                $studentsWithLastMessage[] = [
-                    'user' => $user,
-                    'lastMessage' => $lastMessage ? $lastMessage->message : null,
-                    'date' => $formattedDate,
-                ];
-            } elseif ($userType === 'supervisor') {
-                $supervisorsWithLastMessage[] = [
-                    'user' => $user,
-                    'lastMessage' => $lastMessage ? $lastMessage->message : null,
-                    'date' => $formattedDate,
-                ];
-            }
+            // Calculate unread message count for the current user
+        $unreadCount = Messages::where('receiver', $currentUserId)
+        ->where('sender', $user->id)
+        ->where('is_read', false) // Assuming 'is_read' is a column in your messages table
+        ->count();
+
+        // Determine which array to populate based on user type
+        if ($userType === 'student') {
+            $studentsWithLastMessage[] = [
+                'user' => $user,
+                'lastMessage' => $lastMessage ? $lastMessage->message : null,
+                'date' => $formattedDate,
+                'unreadCount' => $unreadCount,
+            ];
+        } elseif ($userType === 'supervisor') {
+            $supervisorsWithLastMessage[] = [
+                'user' => $user,
+                'lastMessage' => $lastMessage ? $lastMessage->message : null,
+                'date' => $formattedDate,
+                'unreadCount' => $unreadCount,
+            ];
         }
+    }
+
 
         return view('chat.chatslist', [
             'studentsWithLastMessage' => $studentsWithLastMessage,
@@ -76,20 +85,6 @@ class MessagesController extends Controller
         ]);
     }
 
-    // public function getUsers(){
-    //     // Get all users except the authenticated user
-    //     $users = User::where('id', '!=', auth()->id())->get();
-
-    //     // Separate users into supervisors (role 2) and students (role 1)
-    //     $supervisors = $users->filter(function ($user) {
-    //         return $user->role == 2;
-    //     });
-
-    //     $students = $users->filter(function ($user) {
-    //         return $user->role == 1;
-    //     });
-    //     return view('chat.chatslist',compact('supervisors', 'students'),['user'=> auth()->user()]);
-    // }
     public function chatForm($user_id){
 
     $receiver = User::find($user_id); // Retrieve the receiver user by ID
@@ -108,14 +103,39 @@ class MessagesController extends Controller
         $query->where('sender', $user_id)->where('receiver', $currentUserId);
     })->orderBy('created_at', 'asc')->get();
 
+         // Find all unread messages for the current user from a specific sender
+         $unreadMessages = Messages::where('receiver', $currentUserId)
+         ->where('sender', $user_id)
+         ->where('is_read', false) // Assuming there's a column 'is_read' to track message status
+         ->get();
+
+         // Loop through each message and mark it as read
+         foreach ($unreadMessages as $message) {
+         $message->is_read = true;
+         $message->save(); // Save the updated message
+         }
+
         return view('chat.chat',compact('receiver','messages'),['user'=> auth()->user()]);
     }
 
     public function sendMessage(Request $request, $user_id){
+    $currentUserId = Auth::id();
     $data['sender']=Auth::user()->id;
     $data['receiver']=$user_id;
     $data['message']=$request->message;
     Messages::create($data);
+     // Find all unread messages for the current user from a specific sender
+     $unreadMessages = Messages::where('receiver', $currentUserId)
+     ->where('sender', $user_id)
+     ->where('is_read', false) // Assuming there's a column 'is_read' to track message status
+     ->get();
+
+     // Loop through each message and mark it as read
+     foreach ($unreadMessages as $message) {
+     $message->is_read = true;
+     $message->save(); // Save the updated message
+     }
+
     // Broadcast message using Pusher
     $receiver= User::where('id',$user_id)->first();
     \broadcast(new ChatSent($receiver, $request->message));
@@ -124,6 +144,36 @@ class MessagesController extends Controller
 
 
 
-}}
+}
+// MessagesController.php
+public function markAsRead($user_id) {
+    // Retrieve the authenticated user
+    $currentUser = auth()->user();
+
+    // Mark messages as read
+    Messages::where('sender', $user_id)
+        ->where('receiver', $currentUser->id)
+        ->update(['is_read' => true]);
+
+    return response()->json(['success' => true]);
+}
+public function unreadMessagesCount(Request $request)
+    {
+        // Retrieve the authenticated user
+        $user = $request->user();
+
+        if (!$user) {
+            return response()->json(['error' => 'Unauthenticated'], 401);
+        }
+
+        // Query to count unread messages for the authenticated user
+        $unreadCount = Messages::where('receiver', $user->id)
+            ->where('is_read', false)
+            ->count();
+
+        // Return the unread message count as JSON response
+        return response()->json(['unread_count' => $unreadCount]);
+    }
+}
 
 

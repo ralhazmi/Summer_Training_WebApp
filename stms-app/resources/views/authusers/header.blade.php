@@ -28,7 +28,7 @@
 
   </style>
 </head>
-<body>
+<body     style="height: 117vh;">
 <nav class="fixed top-0 z-50 w-full bg-teal-600  ">
   <div class="px-3 py-3 lg:px-5 lg:pl-3">
     <div class="flex items-center justify-between">
@@ -70,7 +70,7 @@
   </div>
 </nav>
 <div class="p-4 ">
-  <div class="p-4  rounded-lg  mt-16">
+  <div class="p-4  rounded-lg  mt-16" >
   <div class="flex justify-end rounded-md ">
 <a href="{{route('dashboard')}}" class="inline-flex items-end text-lg text-blue-900 hover:underline">
 <svg class="h-3.5 ms-2 mb-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">

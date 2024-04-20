@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use App\Models\CommonQuestions;
 use App\Models\TrainingInstitution;
 use App\Models\Announcements;
@@ -22,14 +23,19 @@ class DashController extends Controller
      */
     public function index()
     {
+        $user = Auth::user();
         $datann=Announcements::count();
-        $previousRequests=Requests::count();
-        $data=Reports::count();
+        $previousRequests=Requests::where('user_id', $user->id)
+        ->orWhere('userTo', $user->id)
+        ->count();
+        $data=Reports::where('user_id', $user->id)
+        ->orWhere('userTo', $user->id)
+        ->count();
         $Common=commonquestions::all();
         $Training= traininginstitution::all();
         return view('Dash',compact('Common','Training','datann','previousRequests','data'),['user'=> auth()->user()]);
     }
-   
+
     /**
      * Show the form for creating a new resource.
      */

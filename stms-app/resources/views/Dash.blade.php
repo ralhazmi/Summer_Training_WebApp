@@ -67,24 +67,32 @@
 </div>
 @endif
 <!--cords -->
+<div class="flex items-center justify-center">
 <ol class="items-center sm:flex">
     <!--report-->
 <li class="relative mb-6 sm:mb-0">
         <div class="mt-3 sm:pe-8">
-            <a href="{{route('Reportsindex')}}" class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100">
-
-            <p class="mb-2 text-2xl font-bold tracking-tight "style="color:#00519B;">Reports</p>
-            <p class="font-semibold "style="color:#00519B;">Published Requests({{$data}})</p>
+            <a href="{{route('Reportsindex')}}" class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:shadow-lg  hover:shadow-cyan-600 duration-300 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100" style="height:190px;width:215px;">
+            <div >
+            <div class="flex justify-center align-center mb-2 text-2xl font-bold tracking-tight "style="color:#00519B;">Reports</div><br>
+            <div class="flex justify-center align-center mb-2 text-2xl font-bold tracking-tight "><i class="fa fa-solid fa-file-lines pl-1 flex-shrink-0 w-4 h-4 text-blue-900 transition duration-75  group-hover:text-blue-900 " >
+                </i>
+        </div><br>
+            <div class="flex justify-center align-center text-2xl font-blod "style="color:#00519B;">{{$data}}</div>
+            </div>
         </a>
 
 </li>
 <!--announcement-->
 <li class="relative mb-6 sm:mb-0">
         <div class="mt-3 sm:pe-8 ">
-           <a href="{{route('indexannouncement')}}"class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100">
-
-           <p class="mb-2 text-2xl font-bold tracking-tight"style="color:#00519B;">Announcements</p>
-            <p class="font-semibold "style="color:#00519B;">Published Announcement({{$datann}})</p>
+           <a href="{{route('indexannouncement')}}"class=" transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:shadow-lg  hover:shadow-cyan-600 duration-300 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100" style="height:190px;width:215px;">
+           <div >
+           <div class="flex justify-center align-center mb-2 text-2xl font-bold tracking-tight"style="color:#00519B;">Announcements</div><br>
+          <div class="flex justify-center align-center mb-2 text-2xl font-bold tracking-tight "> <i class="fa fa-solid fa-bullhorn pl-1 flex-shrink-0 w-4 h-4 text-blue-900 transition duration-75  group-hover:text-blue-900 " >
+                </i>
+        </div><br>
+            <div class="flex justify-center align-center text-2xl font-blod "style="color:#00519B;">{{$datann}}</div></div>
         </a>
 
     </li>
@@ -92,15 +100,19 @@
 <!--request-->
 <li class="relative mb-6 sm:mb-0">
         <div class="mt-3 sm:pe-8">
-        <a href="{{route('indexrequest')}}" class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100">
-
-        <p class="mb-2 text-2xl font-bold tracking-tight "style="color:#00519B;">Requests </p>
-            <p class="font-semibold  "style="color:#00519B;">Published Requests({{$previousRequests}})</p>
+        <a href="{{route('indexrequest')}}" class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:shadow-lg  hover:shadow-cyan-600 duration-300 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100"style="height:190px;width:215px;">
+        <div >
+        <div class="flex justify-center align-center mb-2 text-2xl font-bold tracking-tight "style="color:#00519B;">Requests</div><br>
+        <div class="flex justify-center align-center mb-2 text-2xl font-bold tracking-tight "><i class="fa fa-solid fa-file-pen  pl-1 flex-shrink-0 w-4 h-4 text-blue-900 transition duration-75  group-hover:text-blue-900 " >
+                </i>
+    </div><br>
+            <div class="flex justify-center align-center text-2xl font-blod  "style="color:#00519B;">{{$previousRequests}}</div></div>
            </a>
 
         </div>
 </li>
 </ol>
+</div>
 <br/>
 <ol class="sm:flex sm:flex-col">
     <li class="relative mb-6 sm:mb-0">

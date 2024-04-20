@@ -42,28 +42,28 @@
 <!--show the questions -->
 <p class="text-lg font-semibold mb-4 "style="color:#00519B;">Common Questions</p>
 @if (count($Common) > 0)
-<div id="accordion-collapse" data-accordion="collapse">
+<div  id="accordion-collapse" data-accordion="collapse">
 @php $counter = 0; @endphp
 @foreach($Common as $index => $question)
     @if($counter < 5)
         @php $counter++; @endphp
         <h2 id="accordion-collapse-heading-{{$index}}">
-            <button type="button" class="text-blue-900 flex items-center justify-between w-96 p-3 font-medium rtl:text-right  border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 hover:bg-gray-100 gap-3"style="color:#00519B;" data-accordion-target="#accordion-collapse-body-{{$index}}" aria-expanded="false" aria-controls="accordion-collapse-body-{{$index}}">
-                <span>{{$question->question}}</span>
+            <button type="button" class=" w-full text-blue-900 flex items-center justify-between bg-gray-100  p-3 font-medium rtl:text-right  border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 hover:bg-gray-100 gap-3" style="color:#00519B;background-color:#ffffff;" data-accordion-target="#accordion-collapse-body-{{$index}}" aria-expanded="false" aria-controls="accordion-collapse-body-{{$index}}">
+                <span >{{$question->question}}</span>
                 <svg data-accordion-icon class="w-4 h-4 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
                 </svg>
             </button>
         </h2>
         <div id="accordion-collapse-body-{{$index}}" class="hidden" aria-labelledby="accordion-collapse-heading-{{$index}}">
-            <div class="text-blue-800 p-5 border border-b-0 border-gray-200 w-96">
+            <div class="text-blue-800 p-5 bg-gray-200 border border-b-0 border-gray-200 w-full">
                 <p class="mb-2 "style="color:#00519B;">{{$question->answer}}</p>
             </div>
         </div>
     @else
-        <div id="hidden-questions" style="display: none;">
+        <div  id="hidden-questions" style="display: none;">
             <h2 id="accordion-collapse-heading-{{$index}}">
-                <button type="button" class="text-blue-900 flex items-center justify-between w-96 p-3 font-medium rtl:text-right text-gray-900 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 hover:bg-gray-100 gap-3" data-accordion-target="#accordion-collapse-body-{{$index}}" aria-expanded="false" aria-controls="accordion-collapse-body-{{$index}}">
+                <button type="button" class="text-blue-900 flex items-center justify-between w-full p-3 font-medium rtl:text-right text-gray-900 border border-b-0 border-gray-200   focus:ring-4 focus:ring-gray-200 hover:bg-gray-100 gap-3" data-accordion-target="#accordion-collapse-body-{{$index}}" aria-expanded="false" aria-controls="accordion-collapse-body-{{$index}}">
                     <span style="color:#00519B;">{{$question->question}}</span>
                     <svg data-accordion-icon class="w-4 h-4 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
@@ -71,15 +71,16 @@
                 </button>
             </h2>
             <div id="accordion-collapse-body-{{$index}}" class="hidden" aria-labelledby="accordion-collapse-heading-{{$index}}">
-                <div class="text-blue-800 p-5 border border-b-0 border-gray-200 w-96">
+                <div class="text-blue-800 p-5 border border-b-0 border-gray-200 w-full">
                     <p class="mb-2 "style="color:#00519B;">{{$question->answer}}</p>
                 </div>
             </div>
         </div>
     @endif
 @endforeach
-
-<button id="showMoreBtn" class="text-blue-900 flex items-center justify-between w-96 p-3 font-medium rtl:text-right  border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 hover:bg-gray-100 gap-3 mt-4 text-blue-800 hover:underline" onclick="toggleShowMore()">Show More</button>
+@if (count($Common) > 5)
+<button id="showMoreBtn"  class="bg-blue-900 mt-4 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded" onclick="toggleShowMore()">Show More</button>
+@endif
 
 <script>
     let hiddenQuestions = document.getElementById('hidden-questions');
