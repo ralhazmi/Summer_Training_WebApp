@@ -3,15 +3,15 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Exception;
-use Illuminate\Support\Facades\Storage; 
-use Illuminate\Support\Facades\Log; 
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 use App\Models\Reports;
 use App\Http\Requests\CreateReport;
 use App\Http\Requests\AddDegree;
 use App\Notifications\reportsnoti;
 use App\Models\User;
 use Illuminate\Support\Facades\Notification;
-
+use SebastianBergmann\CodeCoverage\Report\Xml\Report;
 
 class ReportsController extends Controller
 {
@@ -22,8 +22,21 @@ class ReportsController extends Controller
      */
     public function index()
     {
-        $data=Reports::paginate(10);;
-        return view('Reports.index',compact('data'),['user'=> auth()->user()]);
+        $userId = auth()->id();
+        $data=Reports::where('user_id', $userId)
+        ->orWhere('userTo', $userId)
+        ->paginate(10);
+
+         // Retrieve userTo names for each request
+         $userToNames = [];
+         foreach ($data as $report) {
+             $userToId = $report->userTo;
+             $userToName = User::find($userToId)->username; // Assuming 'username' is the property you want to display
+             $userToNames[$report->id] = $userToName;
+         }
+
+         $users = User::where('role', 2)->get();
+        return view('Reports.index',compact('data','users', 'userToNames'),['user'=> auth()->user()]);
     }
 
     /**
@@ -31,7 +44,20 @@ class ReportsController extends Controller
      */
     public function create()
     {
-    return view('Reports.index');
+        $userId = auth()->id();
+        $data=Reports::where('user_id', $userId)
+        ->orWhere('userTo', $userId)
+        ->paginate(10);
+        // Retrieve userTo names for each request
+        $userToNames = [];
+        foreach ($data as $report) {
+            $userToId = $report->userTo;
+            $userToName = User::find($userToId)->username; // Assuming 'username' is the property you want to display
+            $userToNames[$report->id] = $userToName;
+        }
+
+        $users = User::where('role', 2)->get();
+    return view('Reports.create',compact('users', 'userToNames'));
     }
 
     /**
@@ -43,9 +69,16 @@ class ReportsController extends Controller
         $datatoinsert['report_title']=$request->report_title;
         $datatoinsert['date']=date('Y-m-d H:i:s');
         $datatoinsert['attachment']=$request->attachment;
-        $datatoinsert['user_id']=$request->user_id;
-        $datatoinsert['degree']=$request->degree;
+        // $datatoinsert['user_id']=$request->user_id;
+        $datatoinsert['userTo']=$request->userTo;
         $attachment = $request-> attachment;
+        // Associate the authenticated user with the request
+        $datatoinsert->user()->associate(auth()->user());
+        // Get the userTo ID from the request
+        $userToId = $datatoinsert['userTo'];
+        // Find the corresponding User model
+        $userTo= User::find($userToId);
+        $datatoinsert->supervisor()->associate($userTo);
 
         if( $attachment){
             $attachmentname=time().'.'. $attachment->getClientOriginalExtension();
@@ -53,9 +86,10 @@ class ReportsController extends Controller
             $datatoinsert->attachment=$attachmentname;
         }
 
-         
+
         //notification
-        $usersrep=User::where('role','2')->get();
+        $ReportTo=Reports::latest()->value('userTo');
+        $usersrep=User::where('id',$ReportTo)->get();
         $Reports = Reports::latest()->value('id');
         Notification::send($usersrep,new reportsnoti($Reports));
 
@@ -65,11 +99,13 @@ class ReportsController extends Controller
 
     }
 
-    
+
     public function show($id)
     {
        $report = Reports::find($id);
-       return view('Reports.show', compact('report'),['user'=> auth()->user()]);
+       $userToId = $report->userTo;
+        $userToName = User::find($userToId);
+       return view('Reports.show', compact('report','userToName'),['user'=> auth()->user()]);
     }
 
 
@@ -85,21 +121,21 @@ class ReportsController extends Controller
     /**
      * Show the form for add the degree.
      */
-    public function giveDegree(AddDegree $request, $id)
-    {
-        try {
-            $report = Reports::findOrFail($id);
-            $report->degree = $request->degree;
-            $report->save();
-        
-            return redirect()->back()->with('success', 'Degree saved successfully!');
-        } catch (Exception $e) {
-            // Log the error
-            Log::error($e->getMessage());
-            return redirect()->back()->with('error', 'Failed to save degree.');
-        }
-    }
-    
+    // public function giveDegree(AddDegree $request, $id)
+    // {
+    //     try {
+    //         $report = Reports::findOrFail($id);
+    //         $report->degree = $request->degree;
+    //         $report->save();
+
+    //         return redirect()->back()->with('success', 'Degree saved successfully!');
+    //     } catch (Exception $e) {
+    //         // Log the error
+    //         Log::error($e->getMessage());
+    //         return redirect()->back()->with('error', 'Failed to save degree.');
+    //     }
+    // }
+
     /**
      * Show the form for editing the specified resource.
      */

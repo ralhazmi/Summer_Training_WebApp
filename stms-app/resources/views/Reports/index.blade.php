@@ -3,6 +3,29 @@
 @section('title', 'Durba | Reports')
 
 @section('body')
+<style>
+/* Add these styles to your existing CSS file or create a new one */
+.pagination a,
+.pagination span {
+
+    color: #00519b;
+    border-color: #00519b;
+    background-color: #fff;
+
+}
+
+
+input[type=file]::file-selector-button {
+
+        background-color: #00519B ;
+
+        }
+input[type=file]::file-selector-button:hover {
+        background-color: #00519B;
+        }
+
+
+</style>
 <div class="flex justify-end rounded-md ">
     <div class="block space-y-4 md:flex md:space-y-0 md:space-x-4 rtl:space-x-reverse">
         @if(auth()->user()->role == 1)
@@ -32,17 +55,17 @@
 
 @csrf
 
-<div class="flex mb-5">
-    <div class="w-1/2 ml-auto">
-        <label for="date" class="block mb-2 text-sm font-medium text-blue-800 text-left">Date</label>
-        <input type="date" id="date" name="date" value="" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
-        @error('date')
-        <span class="text-red-800">{{ $message }}</span>
-        @enderror
-    </div>
-</div>
 
-<div class="flex mb-5">
+    <div>
+    <label for="userTo" class="block mb-2 text-sm font-medium "style="color:#00519B;">Send To: </label>
+    <select id="userTo" name="userTo" class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "style="color:#00519B;">
+        <option value="">Select Supervisor...</option>
+        @foreach($users as $supervisor)
+        <option value="{{ $supervisor->id }}">{{ $supervisor->username }}</option>
+        @endforeach
+    </select>
+    </div>
+    <div class="flex mb-5">
     <div class="w-1/2 mr-2">
         <label for="report_title" class="block mb-2 text-sm font-medium "style="color:#00519B;">Title</label>
         <input type="text" id="report_title" name="report_title" value="" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  " placeholder="Write your report title here..." required />
@@ -50,22 +73,27 @@
         <span class="text-red-800">{{ $message }}</span>
         @enderror
     </div>
-
-    <div class="w-1/2 ml-2">
-        <label for="user_id" class="block mb-2 text-sm font-medium "style="color:#00519B;">Student ID</label>
-        <input type="integer" id="user_id" name="user_id" value="" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  " placeholder="Write your id here..." required />
-        @error('user_id')
+    <div class="w-1/2 ml-auto">
+        <label for="date" class="block mb-2 text-sm font-medium text-blue-800 text-left">Date</label>
+        <input type="date" id="date" name="date" value="" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
+        @error('date')
         <span class="text-red-800">{{ $message }}</span>
         @enderror
     </div>
+
 </div>
+
+
 
 <div class="mb-5">
-    <label class="block mb-2 text-sm font-medium "style="color:#00519B;" for="user_avatar">Attachments</label>
-    <input class="w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none " aria-describedby="user_avatar_help" id="user_avatar" type="file" name="attachment">
+<div>
+   <label class="block mb-2 text-sm font-medium " style="color:#00519B;" for="attachment">Attachment</label>
+   <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"  id="attachment" type="file" name="attachment" accept=".pdf" required>
+   <p class="mt-1 text-sm text-gray-400 " id="file_input_help">PDF Only</p>
+</div>
 </div>
 
-<button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center ">Send</button>
+<button type="submit" class="mt-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center ">Send</button>
 </form>
 
 
@@ -87,10 +115,14 @@
             <div class="text-gray-400 font-semibold flex justify-end mb-5 "style="margin-bottom: -25px;">{{$report->date}}</div>
                     <h4 class="  font-semibold mb-4 "style="color:#00519B;">{{ $report->report_title }}</h4>
 
-                <div class="font-semibold"style="color:#00519B;">Student ID: {{ $report->user_id }}</div>
+            @if(auth()->user()->role == 1)
+            <div class="text-blue-900 font-semibold">To: {{ $userToNames[$report->id] }}</div>
+            @elseif(auth()->user()->role == 2)
+                <div class="text-blue-900 font-semibold">From: {{ $report->user->username }}</div>
+            @endif
 <!-- Add more fields as needed -->
 
-<a href="{{route('Reportshow',$report->id)}}" class="font-medium text-blue-800 hover:underline"><button class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white  focus:ring-4 focus:outline-none focus:ring-green-200 ">
+<a href="{{route('Reportshow',$report->id)}}" class="mt-4 font-medium text-blue-800 hover:underline"><button class="mt-4 relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden border border-blue-900 text-sm font-medium text-gray-900 rounded-lg group hover:bg-blue-900   hover:text-white  focus:ring-4 focus:outline-none focus:ring-cyan-600">
 <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white  rounded-md group-hover:bg-opacity-0">
 <i class="fa-solid fa-circle-info " style="color: #00519b;"></i><i class="ml-2">View Details</i>
 </span>
@@ -102,7 +134,7 @@
 @endif
 </div>
 </div>
-<span>
+<span class="pagination">
     {{$data->links()}}
 </span>
 

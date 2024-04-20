@@ -20,7 +20,7 @@ class AnnouncementsController extends Controller
      */
     public function index()
     {
-        $datann=Announcements::paginate(4);
+        $datann=Announcements::paginate(5);
         return view('annou.Announcements',compact('datann'),['user'=> auth()->user()]);
     }
 
@@ -56,7 +56,7 @@ class AnnouncementsController extends Controller
         $users=User::where('id','!=',auth()->user()->id)->get();
         $Announcements = announcements::latest()->value('id');
         Notification::send($users,new announcementnoti($Announcements));
-        
+
         $datatoinsert->save();
        return redirect()->route('indexannouncement')->with(['success'=>'added successfully']);
     }
@@ -67,7 +67,7 @@ class AnnouncementsController extends Controller
       return view('annou.detailsannouncement', compact('announcement'),['user'=> auth()->user()]);
     }
 
-   
+
     /**
      * Display the specified resource.
      */

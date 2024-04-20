@@ -18,7 +18,7 @@ class announcementnoti extends Notification
     public function __construct($Announcements)
     {
         $this->Announcements = $Announcements;
-      
+
     }
 
     /**
@@ -34,8 +34,8 @@ class announcementnoti extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-            
-            //'id'=> (int) $this->Announcements->id,
+
+            'id'=> $this->Announcements,
             'title'=>'Add new announcement',
             'user'=> auth()->User()->username,
         ];

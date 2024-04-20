@@ -7,6 +7,7 @@ use App\Models\Requests;
 use App\Models\Reply;
 use App\Http\Requests\CreateRequest;
 use App\Notifications\requestnoti;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
 
 class RequestController extends Controller
@@ -51,14 +52,15 @@ class RequestController extends Controller
              $attachment->move('attachmentFile', $attachmentName);
              $newRequest->attachment = $attachmentName;
          }
-          //notification
-        $usersreq=User::where('role','2')->get();
-        $previousRequests = Requests::latest()->value('id');
-        Notification::send($usersreq,new requestnoti($previousRequests));
 
 
          // Save the new request
          $newRequest->save();
+        //notification
+        $requestTo=Requests::latest()->value('userTo');
+        $usersreq=User::where('id',$requestTo)->get();
+        $previousRequests = Requests::latest()->value('id');
+        Notification::send($usersreq,new requestnoti($previousRequests));
 
          return redirect()->route('indexrequest')->with(['success' => 'Request added successfully']);
      }

@@ -36,6 +36,7 @@ class requestnoti extends Notification
     public function toDatabase(object $notifiable): array
     {
         return [
+            'id'=> $this->previousRequests,
             'title'=>'Add new request',
             'user'=> auth()->User()->username,
         ];

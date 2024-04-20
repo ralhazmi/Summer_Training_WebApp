@@ -11,9 +11,21 @@ class Reports extends Model
     public $table ="reports";
     protected $fillable = [
         'user_id',
+        'userTo',
         'report_title',
         'date',
         'attachment',
 
     ];
+
+    // Define the relationship with the User model for the user who created the request
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function supervisor()
+    {
+        return $this->belongsTo(User::class, 'userTo');
+    }
 }

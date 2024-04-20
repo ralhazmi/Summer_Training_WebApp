@@ -19,12 +19,21 @@
 
 
      <form action="/action_page.php">
+     <div>
+                        <label for="userTo" class="block mb-2 text-sm font-medium "style="color:#00519B;">Send To: </label>
+                        <select id="userTo" name="userTo" class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "style="color:#00519B;">
+                            <option value="">Select Supervisor...</option>
+                            @foreach($users as $supervisor)
+                            <option value="{{ $supervisor->id }}">{{ $supervisor->username }}</option>
+                            @endforeach
+                        </select>
+    </div>
      <label for="report_title">Report Title</label>
      <input type="text" id="fname" name="report_title" placeholder="Your report title..">
      @if($errors->has('report_title'))
     <span class="font-medium">{{ $errors->first('report_title') }} </span>
     </div>
-    @endif 
+    @endif
 
 
     <label for="attachment">Upload file</label>
@@ -34,7 +43,7 @@
     @if($errors->has('attachment'))
     <span class="font-medium">{{ $errors->first('attachment') }} </span>
     </div>
-    @endif 
+    @endif
 
 
     <label for="date">Date</label>
@@ -42,7 +51,7 @@
     @if($errors->has('date'))
     <span class="font-medium">{{ $errors->first('date') }} </span>
     </div>
-    @endif 
+    @endif
 
 
     <form action="/action_page.php">
@@ -51,12 +60,12 @@
     @if($errors->has('user_id'))
     <span class="font-medium">{{ $errors->first('user_id') }} </span>
     </div>
-    @endif 
+    @endif
 
-    
+
     <input type="submit" value="Submit">
     </form>
-    </div> 
-  
+    </div>
+
     </body>
 @endsection

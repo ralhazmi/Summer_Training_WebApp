@@ -5,17 +5,17 @@
 </button>
 <div id="dropdownUsers" class="z-20 hidden w-full max-w-sm bg-white divide-y divide-gray-100 rounded-lg shadow " aria-labelledby="dropdownUsersButton">
   <div class="block px-4 py-2 font-medium text-center text-gray-700 rounded-t-lg bg-gray-50"id="notification_count">
-  Notifications({{Auth::User()->unreadNotifications->count()}}) 
+  Notifications({{Auth::User()->unreadNotifications->count()}})
   <a href="/MarkAsRead_all" class="font-medium text-blue-800 hover:underline">Mark as read all</a>
   </div>
   @foreach(Auth()->User()->unreadNotifications as $notification)
   <div class="divide-y divide-gray-100">
    @if($notification->type =='App\Notifications\announcementnoti')
-    <a href="#" class="flex px-4 py-3 hover:bg-gray-100 ">
+    <a href="{{route('detailsannouncement',$notification->data['id'])}}" class="flex px-4 py-3 hover:bg-gray-100 ">
       @elseif($notification->type =='App\Notifications\reportsnoti')
-    <a href="#" class="flex px-4 py-3 hover:bg-gray-100 ">
+    <a href="{{route('Reportshow',$notification->data['id'])}}" class="flex px-4 py-3 hover:bg-gray-100 ">
       @else
-    <a href="#" class="flex px-4 py-3 hover:bg-gray-100 ">
+    <a href="{{route('requestdetails',$notification->data['id'])}}" class="flex px-4 py-3 hover:bg-gray-100 ">
       @endif
       <div class="w-full ps-3">
           <div class="text-gray-500 text-sm mb-1.5 "><span class="font-semibold text-gray-900 ">{{$notification->data['user']}}</span>: {{$notification->data['title']}}<br/> <h7>{{$notification->created_at}}</h> </div>

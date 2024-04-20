@@ -34,11 +34,11 @@ class reportsnoti extends Notification
         return ['database'];
     }
 
-   
+
     public function toDatabase(object $notifiable): array
     {
         return [
-            //'id'=>(int)$this->Reports->id ,
+            'id'=> $this->Reports,
             'title'=>'Add new report',
             'user'=> auth()->User()->username,
         ];
