@@ -70,14 +70,14 @@ input[type=file]::file-selector-button:hover {
         <label for="report_title" class="block mb-2 text-sm font-medium "style="color:#00519B;">Title</label>
         <input type="text" id="report_title" name="report_title" value="" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  " placeholder="Write your report title here..." required />
         @error('report_title')
-        <span class="text-red-800">{{ $message }}</span>
+        <span class="text-red-500">{{ $message }}</span>
         @enderror
     </div>
     <div class="w-1/2 ml-auto">
         <label for="date" class="block mb-2 text-sm font-medium text-blue-800 text-left">Date</label>
         <input type="date" id="date" name="date" value="" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
         @error('date')
-        <span class="text-red-800">{{ $message }}</span>
+        <span class="text-red-500">{{ $message }}</span>
         @enderror
     </div>
 

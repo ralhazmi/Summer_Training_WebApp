@@ -20,7 +20,7 @@ class AnnouncementsController extends Controller
      */
     public function index()
     {
-        $datann=Announcements::paginate(5);
+        $datann = Announcements::orderBy('created_at', 'desc')->paginate(5);
         return view('annou.Announcements',compact('datann'),['user'=> auth()->user()]);
     }
 

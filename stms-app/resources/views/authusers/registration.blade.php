@@ -106,25 +106,40 @@
                 <div>
                     <label for="id" class="block mb-2 text-sm font-medium "style="color:#00519B;">University ID</label>
                     <input type="text" name="id" id="id" class="bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full " style="color:#00519B;" placeholder="411......" required />
+                    @error('id')
+                        <spam class="text-red-500"> {{ $message }} </spam>
+                    @enderror
                 </div>
                 <div class="flex mb-4">
                     <div class="w-1/2 mr-2 ">
                         <label for="username" class="block mb-2 text-sm font-medium "style="color:#00519B;">Full Name</label>
                         <input type="text" name="username" id="username" class="bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  " style="color:#00519B;" placeholder="Your Full Name" required />
+                        @error('username')
+                        <spam class="text-red-500"> {{ $message }} </spam>
+                        @enderror
                     </div>
                     <div class="w-1/2 ">
                         <label for="major" class="block mb-2 text-sm font-medium "style="color:#00519B;">Department</label>
                         <input type="text" name="major" id="major" class="bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  " style="color:#00519B;" placeholder="ex:Information technology..." required />
+                        @error('major')
+                        <spam class="text-red-500"> {{ $message }} </spam>
+                        @enderror
                     </div>
                 </div>
                 <div class="flex mb-4">
                     <div class="w-1/2 mr-2 ">
                         <label for="email" class="block mb-2 text-sm font-medium "style="color:#00519B;">Your University email</label>
                         <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  " style="color:#00519B;" placeholder="name@company.com" required />
+                        @error('email')
+                        <spam class="text-red-500"> {{ $message }} </spam>
+                        @enderror
                     </div>
                     <div class="w-1/2 ">
                         <label for="hours" class="block mb-2 text-sm font-medium "style="color:#00519B;">Hours earned</label>
                         <input type="number"  name="hours" id="hours" class="bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  " min=0 style="color:#00519B;" placeholder="must be 120 or above" required />
+                        @error('hours')
+                        <spam class="text-red-500"> {{ $message }} </spam>
+                        @enderror
                     </div>
                 </div>
                 <div class="flex mb-4">
@@ -132,15 +147,24 @@
                         <label for="password" class="block mb-2 text-sm font-medium " style="color:#00519B;">Password</label>
                         <input type="password" name="password" id="password" placeholder="••••••••" style="color:#00519B;" class="bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  " required />
                         <p style="color:#00519B;font-size:x-small">*password must have at least 8 numbers</p>
+                        @error('password')
+                        <spam class="text-red-500"> {{ $message }} </spam>
+                        @enderror
                     </div>
                     <div class="w-1/2 ">
                         <label for="confirmpass" class="block mb-2 text-sm font-medium " style="color:#00519B;">Password Confirmation</label>
                         <input type="password" name="confirmpass" id="confirmpass" placeholder="••••••••" style="color:#00519B;" class="bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  " required />
+                        @error('confirmpass')
+                        <spam class="text-red-500"> {{ $message }} </spam>
+                        @enderror
                     </div>
                 </div>
                 <div>
                         <label class="block mb-2 text-sm font-medium " style="color:#00519B;" for="attachment">Academic Record</label>
                         <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"  id="attachment" type="file" name="attachment" accept=".pdf" required>
+                        @error('attachment')
+                        <spam class="text-red-500"> {{ $message }} </spam>
+                        @enderror
                         <p class="mt-1 text-sm text-gray-400 " id="file_input_help">PDF Only</p>
                 </div>
                 <button type="submit" class="w-full text-white bg-sky-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 text-center dark:bg-sky-700 dark:hover:bg-blue-700 dark:focus:ring-blue-800">register </button>
@@ -166,7 +190,7 @@
                             <div data-popover id="popover-description" role="tooltip" class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-72">
 
                             <div class="p-3 space-y-2">
-                            Email:<a href= "mailto:Durba.webapp@qmail.com" class="m-1"> Durba.webapp@qmail.com</a></p>
+                            Email:<a href= "mailto:Durba.webapp@qmail.com" class="m-1"> Durba.webapp@gmail.com</a></p>
                             <div data-popper-arrow></div>
                         </div>
                         </div>

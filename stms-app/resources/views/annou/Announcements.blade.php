@@ -58,14 +58,14 @@ background-color: #00519B;
                <label for="title" class=" block mb-2 text-sm font-medium text-blue-800 ">Tittle</label>
              <input type="text" id="title" name="title"value="{{old('title')}}" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Write tittle here..." required />
               @error('title')
-             <spam class="text-red-800"> {{ $message }} </spam>
+             <spam class="text-red-500"> {{ $message }} </spam>
              @enderror
             </div>
           <div>
            <label for="content" class=" block mb-2 text-sm font-medium text-blue-800 ">Content</label>
            <textarea id="content" rows="3" class=" p-2.5 w-full text-sm text-gray-900  rounded-lg   border-gray-300 focus:ring-blue-500 focus:border-blue-500  "placeholder="Write content here..."  name="content" value="{{old('content')}}"></textarea>
            @error('content')
-          <spam class="text-red-800"> {{ $message }} </spam>
+          <spam class="text-red-500"> {{ $message }} </spam>
            @enderror
          </div>
          <label class="text-sm font-medium " style="color:#00519B;"for="user_avatar">Attachments</label>
@@ -107,7 +107,7 @@ background-color: #00519B;
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg ">
     <table class="w-full text-sm text-left rtl:text-right text-blue-900  w-full md:w-auto drop-shadow-lg">
     @if (count($datann) > 0)
-    @foreach($datann->reverse() as $announcement)
+    @foreach($datann as $announcement)
         <tbody>
             <tr class="bg-white border-b border-x-indigo-500  shadow-inner shadow-2xl " style="padding-bottom: 20px">
                 <th scope="row" class="flex items-center px-6 py-4 text-blue-900 whitespace-nowrap ">

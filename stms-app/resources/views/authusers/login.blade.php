@@ -90,11 +90,17 @@
         <h5 class="text-xl font-medium " style="color:#00519B;">Sign in </h5>
         <div>
             <label for="email" class="block mb-2 text-sm font-medium "style="color:#00519B;">Your email</label>
-            <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " style="color:#00519B;" placeholder="Id@qu.edu.sa" required />
+            <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " style="color:#00519B;" placeholder="Id@qu.edu.sa"  />
+            @error('email')
+                        <spam class="text-xs text-red-500"> {{ $message }} </spam>
+            @enderror
         </div>
         <div>
             <label for="password" class="block mb-2 text-sm font-medium " style="color:#00519B;">Your password</label>
-            <input type="password" name="password" id="password" placeholder="••••••••" style="color:#00519B;" class="bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required />
+            <input type="password" name="password" id="password" placeholder="••••••••" style="color:#00519B;" class="bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " />
+            @error('password')
+                <spam class="text-xs text-red-500"> {{ $message }} </spam>
+            @enderror
         </div>
         <button type="submit" class="w-full text-white bg-sky-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-sky-700 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login </button>
         <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
@@ -118,7 +124,7 @@
                             <div data-popover id="popover-description" role="tooltip" class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-72">
 
                             <div class="p-3 space-y-2">
-                            Email:<a href= "mailto:Durba.webapp@qmail.com" class="m-1"> Durba.webapp@qmail.com</a></p>
+                            Email:<a href= "mailto:Durba.webapp@qmail.com" class="m-1"> Durba.webapp@gmail.com</a></p>
                             <div data-popper-arrow></div>
                         </div>
                         </div>

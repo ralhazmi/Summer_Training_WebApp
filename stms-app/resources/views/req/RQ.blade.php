@@ -105,14 +105,14 @@ background-color: #00519B;
                             <label for="request_title" class="block mb-2 text-sm font-medium "style="color:#00519B;">Title</label>
                             <input type="text" id="request_title" name="request_title" value="" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="Write title here..." required />
                             @error('request_title')
-                            <span class="text-red-800">{{ $message }}</span>
+                            <span class="text-red-500">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="w-1/2 ml-2">
                             <label for="date" class="block mb-2 text-sm font-medium   "style="color:#00519B;">Date</label>
                             <input type="date" id="date" name="date" value="" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required />
                             @error('date')
-                            <span class="text-red-800">{{ $message }}</span>
+                            <span class="text-red-500">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
@@ -120,7 +120,7 @@ background-color: #00519B;
                         <label for="content" class="block mb-2 text-sm font-medium "style="color:#00519B;">Content</label>
                         <textarea id="content" rows="3" class="p-2.5 w-full text-sm text-gray-900 rounded-lg border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Write content here..." name="content">{{ old('content') }}</textarea>
                         @error('content')
-                        <span class="text-red-800">{{ $message }}</span>
+                        <span class="text-red-500">{{ $message }}</span>
                         @enderror
                     </div>
                     <br>
@@ -192,7 +192,7 @@ background-color: #00519B;
                                         <label for="content" class="text-sm  text-black"style="color:#00519B;">Content</label>
                                         <textarea id="content" rows="3" class="p-2.5 w-full text-sm text-gray-900 rounded-lg border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Write content here..." name="content">{{ old('content') }}</textarea>
                                         @error('content')
-                                        <span class="text-red-800">{{ $message }}</span>
+                                        <span class="text-red-500">{{ $message }}</span>
                                         @enderror
                                     </div>
                                     <br>
