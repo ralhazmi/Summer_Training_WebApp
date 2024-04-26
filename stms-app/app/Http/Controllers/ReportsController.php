@@ -85,6 +85,8 @@ class ReportsController extends Controller
             $request->attachment->move('attachmentFile',$attachmentname);
             $datatoinsert->attachment=$attachmentname;
         }
+        
+        $datatoinsert->save();
 
 
         //notification
@@ -94,7 +96,6 @@ class ReportsController extends Controller
         Notification::send($usersrep,new reportsnoti($Reports));
 
 
-        $datatoinsert->save();
        return redirect()->route('Reportsindex')->with(['success'=>'added successfully']);
 
     }

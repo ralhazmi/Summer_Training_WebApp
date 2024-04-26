@@ -51,13 +51,14 @@ class AnnouncementsController extends Controller
             $datatoinsert->attachment=$attachmentname;
         }
         $datatoinsert->user()->associate(auth()->user());
+        $datatoinsert->save();
 
         //notification
         $users=User::where('id','!=',auth()->user()->id)->get();
         $Announcements = announcements::latest()->value('id');
         Notification::send($users,new announcementnoti($Announcements));
 
-        $datatoinsert->save();
+    
        return redirect()->route('indexannouncement')->with(['success'=>'added successfully']);
     }
 
