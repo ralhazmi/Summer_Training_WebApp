@@ -112,8 +112,7 @@
 <div class="flex justify-center rounded-md">
 <footer class="bg-transparent rounded-lg  m-4 fixed bottom-0 w-full">
         <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
-            <span class="text-sm text-gray-500 sm:text-center">© 2024 جميع الحقوق محفوظة لجامعة القصيم</span>
-            <ul class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 sm:mt-0">
+        <span class="text-xs text-gray-500 sm:text-center">© 2024 All Rights Reserved to Qassim University.</span>            <ul class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 sm:mt-0">
             <li>
                     <div class="flex items-center justify-between">
                         <div class="flex items-center justify-start rtl:justify-end">

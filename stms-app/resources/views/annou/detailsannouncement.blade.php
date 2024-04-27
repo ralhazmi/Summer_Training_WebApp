@@ -18,7 +18,7 @@
 <br/>
         @if($announcement->attachment)
         <div class="flex justify-left w-96 text-blue-800 font-semibold items-center">
-    <button onclick="window.location='{{route('download',$announcement->attachment)}}'" class="bg-blue-900 hover:bg-blue-700 text-white font-bold text-sm py-2 px-4 rounded flex items-center">
+    <button onclick="window.location='{{route('Reportsdownload',$announcement->attachment)}}'" class="bg-blue-900 hover:bg-blue-700 text-white font-bold text-sm py-2 px-4 rounded flex items-center">
         Download File
         <svg class="w-5 h-5 ml-1 text-white hover:underline" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 18">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M8 1v11m0 0 4-4m-4 4L4 8m11 4v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3"/>
